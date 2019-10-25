@@ -389,6 +389,41 @@ $(function () {
                     
 
                     
+                        
+
+<link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<div class="music-player">
+    
+    <div class="title center-align">
+        <i class="fa fa-music"></i>&nbsp;&nbsp;听听音乐
+    </div>
+    
+    <div class="row">
+        <div class="col l8 offset-l2 m10 offset-m1 s12">
+            <div id="aplayer" class="music"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script>
+$(function () {
+    new APlayer({
+        container: document.getElementById('aplayer'),
+        fixed: 'true' === 'true',
+        autoplay: 'false' === 'true',
+        theme: '#42b983',
+        loop: 'all',
+        order: 'list',
+        preload: 'auto',
+        volume: Number('0.7'),
+        listFolded: 'true' === 'true',
+        listMaxHeight: '',
+        audio: JSON.parse('[{"name":"有点甜 (Live)","artist":"麦小兜","url":"audio/1.mp3","cover":"audio/1.jpg"},{"name":"坏女孩 (Live)","artist":"麦小兜","url":"audio/2.mp3","cover":"audio/2.jpg"},{"name":"像暗杀似的绕到背后突然拥抱你 (Live)","artist":"麦小兜","url":"audio/3.mp3","cover":"audio/2.jpg"},{"name":"追光者","artist":"岑宁儿","url":"audio/4.mp3","cover":"audio/4.jpg"},{"name":"9420","artist":"麦小兜","url":"audio/5.mp3","cover":"audio/2.jpg"},{"name":"OK歌","artist":"麦小兜&单色凌","url":"audio/6.mp3","cover":"audio/6.jpg"},{"name":"说爱你","artist":"蔡依林","url":"audio/7.mp3","cover":"audio/7.jpg"},{"name":"海绵宝宝","artist":"麦小兜","url":"audio/8.mp3","cover":"audio/8.jpg"},{"name":"小星星 (Live)","artist":"麦小兜","url":"audio/9.mp3","cover":"audio/1.jpg"},{"name":"说爱你","artist":"麦小兜","url":"audio/10.mp3","cover":"audio/2.jpg"},{"name":"9420","artist":"麦小兜","url":"audio/11.mp3","cover":"audio/2.jpg"},{"name":"123我爱你","artist":"新乐尘符","url":"audio/12.mp3","cover":"audio/12.jpg"},{"name":"下一秒","artist":"张碧晨","url":"audio/13.mp3","cover":"audio/13.jpg"}]')
+    });
+});
+</script>
+                    
 
                     
 
