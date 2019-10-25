@@ -4,8 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 小小明博客测试">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="数学表达式, 小小明博客测试">
+    <meta name="description" content="简单数学结构$a_{m}^{n}$:    a_{m}^{n}
+$ \sqrt{a} $:    \sqrt{a}
+$ \frac{a}{b} $:    \frac{a}{b}
+$$\begin{equation}  x = a_0 + ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hello World | 小小明博客测试</title>
+    <title>数学表达式 | 小小明博客测试</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -28,7 +31,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -222,13 +226,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Hello World
+                        数学表达式
                     </div>
                 </div>
             </div>
@@ -337,12 +341,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Typora/" target="_blank">
+                                <span class="chip bg-color">Typora</span>
+                            </a>
+                        
+                            <a href="/tags/Markdown/" target="_blank">
+                                <span class="chip bg-color">Markdown</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Markdown/" class="post-category" target="_blank">
+                                Markdown
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -350,9 +371,23 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-10-24
+                    2019-10-12
                 </div>
 
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        335
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        2 分
+                    </div>
+                    
                 
 				
 				
@@ -366,19 +401,63 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+                <h1 id="简单数学结构"><a href="#简单数学结构" class="headerlink" title="简单数学结构"></a>简单数学结构</h1><p>$a_{m}^{n}$:    a_{m}^{n}</p>
+<p>$ \sqrt{a} $:    \sqrt{a}</p>
+<p>$ \frac{a}{b} $:    \frac{a}{b}</p>
+<p>$$<br>\begin{equation}<br>  x = a_0 + \cfrac{1}{a_1<br>          + \cfrac{1}{a_2<br>          + \cfrac{1}{a_3 + \cfrac{1}{a_4} } } }<br>\end{equation}<br>$$</p>
+<pre class="line-numbers language-latax"><code class="language-latax">\begin{equation}
+  x = a_0 + \cfrac{1}{a_1 
+          + \cfrac{1}{a_2 
+          + \cfrac{1}{a_3 + \cfrac{1}{a_4} } } }
+\end{equation}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>$$<br>(a+b)^2 = \binom 20 a^2 + \binom 21 ab + \binom 22 b^2<br>$$</p>
+<pre class="line-numbers language-latex"><code class="language-latex">(a+b)^2 = <span class="token function selector">\binom</span> 20 a^2 + <span class="token function selector">\binom</span> 21 ab + <span class="token function selector">\binom</span> 22 b^2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="多行公式"><a href="#多行公式" class="headerlink" title="多行公式"></a>多行公式</h1><p>$$<br>\begin{gather}<br>a + b = b + a = 9 \<br>a \times b = b \times a<br>\end{gather}<br>$$</p>
+<p>每行居中对齐</p>
+<pre class="line-numbers language-Latex"><code class="language-Latex">\begin{gather}
+a + b = b + a = 9 \\
+a \times b = b \times a
+\end{gather}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>$$<br>\begin{align}<br>x &amp;= t + \cos t + 1\<br>y &amp;= 2 \sin 5<br>\end{align}<br>$$<br>按等号或其他关系符对齐</p>
+<pre class="line-numbers language-Latex"><code class="language-Latex">\begin{align}
+x &= t + \cos t + 1\\
+y &= 2 \sin 5
+\end{align}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>$$<br>\begin{align}<br>    &amp; (a+b)(a^2 -ab + b^2) \notag \<br>={} &amp; a^3 -a^2b + ab^2 + a^2b - ab^2 + b^2 \notag \<br>={} &amp; a^3 + b^3<br>\end{align}<br>$$</p>
+<pre class="line-numbers language-Latex"><code class="language-Latex">\begin{align}
+    & (a+b)(a^2 -ab + b^2) \notag \\
+={} & a^3 -a^2b + ab^2 + a^2b - ab^2 + b^2 \notag \\
+={} & a^3 + b^3
+\end{align}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>$$<br>\begin{equation}<br>D(x)=\begin{cases}<br>        1, &amp; \text{if} \quad x \in \mathbb{Q} \<br>        0, &amp; \text{if} \quad  x \in \mathbb{R} \setminus \mathbb{Q}<br>     \end{cases}<br>\end{equation}<br>$$</p>
+<pre class="line-numbers language-Latex"><code class="language-Latex">\begin{equation}
+D(x)=\begin{cases}
+        1, & \text{if} \quad x \in \mathbb{Q} \\
+        0, & \text{if} \quad  x \in \mathbb{R} \setminus \mathbb{Q}
+     \end{cases}
+\end{equation}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="关系符"><a href="#关系符" class="headerlink" title="关系符"></a>关系符</h1><p>$ =$:    =</p>
+<p>$ \equiv$:    \equiv</p>
+<p>$ \neq $:    \neq</p>
+<p>$&gt;$:    &gt;</p>
+<p>$&lt;$:    &lt;</p>
+<p>$ \geq$:    \geq</p>
+<p>$\leq$:    \leq</p>
+<p>$ \approx$:    \approx</p>
+<p>$ \cong$:    \cong</p>
+<p>$ \in  $    \in</p>
+<p>$ \not\in $    \not\in</p>
+<p>$ \ni $    \ni</p>
+<p>$ \not\ni  $    \not\ni</p>
+<p>$ \subset$:    \subset</p>
+<p>$ \supset$:    \supset</p>
+<p>$\supseteqq$:    \supseteqq</p>
+<p>$\subseteqq$:    \subseteqq</p>
+<p>$ \subsetneqq$:    \subsetneqq</p>
+<p>$ \supsetneqq$:    \supsetneqq</p>
+<p>$ \nsubseteqq$:    \nsubseteqq</p>
+<p>$ \nsupseteqq$:    \nsupseteqq</p>
+<p>$ \propto$:    \propto</p>
 
             </div>
             <hr/>
@@ -537,9 +616,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Hello World》
+                    《数学表达式》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/24/hello-world/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/jian-dan-shu-xue-biao-da/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小小明
             </a> 采用
@@ -583,19 +662,19 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/10/24/first/">
+                <a href="/2019/10/hello-world/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="first">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
                         
-                        <span class="card-title">first</span>
+                        <span class="card-title">Hello World</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
                         
                     </div>
                     <div class="publish-info">
@@ -617,37 +696,49 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/24/hello-world/">
+                <a href="/2019/10/16-dui/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="堆">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">堆</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            堆和堆排序：为什么说堆排序没有快速排序快？我们今天讲另外一种特殊的树，“堆”（$Heap$）。堆这种数据结构的应用场景非常多，最经典的莫过于堆排序了。堆排序是一种原地的、时间复杂度为 $O(nlogn)$ 的排序算法。
+前面我们学过快速排序
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-24
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-12
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            小小明
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Markdown/" class="post-category" target="_blank">
+                                    Markdown
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" target="_blank">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -756,13 +847,23 @@
 </main>
 
 
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&nbsp;&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>&nbsp;基于
+            本站由&nbsp;&copy;<a href="https://github.com/xiao-xiaoming" target="_blank">小小明</a>&nbsp;基于
             <a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>&nbsp;主题搭建
             <br>
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">10.3k</span>&nbsp;字
             
             
             
@@ -784,7 +885,7 @@
                 var now = new Date();
 
                 function createtime() {
-                    var grt = new Date("06/28/2019 00:00:00");
+                    var grt = new Date("10/25/2019 00:00:00");
                     now.setTime(now.getTime() + 250);
                     days = (now - grt) / 1000 / 60 / 60 / 24;
                     dnum = Math.floor(days);
@@ -876,5 +977,20 @@ $(function () {
     <script async src="/libs/others/busuanzi.pure.mini.js"></script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"superSample":2,"width":150,"height":360,"position":"right","hOffset":-20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 </html>
