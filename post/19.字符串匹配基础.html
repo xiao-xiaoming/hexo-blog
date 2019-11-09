@@ -1,0 +1,1248 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="19.字符串匹配基础, 小小明博客测试">
+    <meta name="description" content="字符串匹配基础字符串匹配算法编程语言提供的字符串查找函数，比如 Java 中的 indexOf()，Python 中的 find() 函数等，它们底层就是依赖接下来要讲的字符串匹配算法。
+单模式字符串匹配算法有简单的BF 算法和 RK 算法">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>19.字符串匹配基础 | 小小明博客测试</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小明博客测试</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/" class="waves-effect waves-light">
+						
+						<i class="fa fa-home"></i>
+						
+						<span>首页</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/tags" class="waves-effect waves-light">
+						
+						<i class="fa fa-tags"></i>
+						
+						<span>标签</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/categories" class="waves-effect waves-light">
+						
+						<i class="fa fa-bookmark"></i>
+						
+						<span>分类</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/archives" class="waves-effect waves-light">
+						
+						<i class="fa fa-archive"></i>
+						
+						<span>归档</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/about" class="waves-effect waves-light">
+						
+						<i class="fa fa-user-circle-o"></i>
+						
+						<span>关于</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/friends" class="waves-effect waves-light">
+						
+						<i class="fa fa-address-book"></i>
+						
+						<span>友情链接</span>
+					</a>
+          
+        </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小明博客测试</div>
+        <div class="logo-desc">
+            
+            一个普通的博客测试网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-user-circle-o"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        19.字符串匹配基础
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-11-09
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        5.4k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        21 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="字符串匹配基础"><a href="#字符串匹配基础" class="headerlink" title="字符串匹配基础"></a>字符串匹配基础</h1><h1 id="字符串匹配算法"><a href="#字符串匹配算法" class="headerlink" title="字符串匹配算法"></a>字符串匹配算法</h1><p>编程语言提供的字符串查找函数，比如 Java 中的 indexOf()，Python 中的 find() 函数等，它们底层就是依赖接下来要讲的字符串匹配算法。</p>
+<p>单模式字符串匹配算法有简单的BF 算法和 RK 算法，难懂的BM 算法和 KMP 算法。</p>
+<p>多模式字符串匹配算法，就是在一个串中同时查找多个串，有 Trie 树和 AC 自动机。</p>
+<p>BF 算法是最简单、粗暴的字符串匹配算法，它的实现思路是，拿模式串与主串中是所有子串匹配，看是否有能匹配的子串。所以，时间复杂度也比较高，是 O(n*m)，n、m 表示主串和模式串的长度。不过，在实际的软件开发中，因为这种算法实现简单，对于处理小规模的字符串匹配很好用。</p>
+<p>RK 算法是借助哈希算法对 BF 算法进行改造，即对每个子串分别求哈希值，然后拿子串的哈希值与模式串的哈希值比较，减少了比较的时间。所以，理想情况下，RK 算法的时间复杂度是 O(n)，跟 BF 算法相比，效率提高了很多。不过这样的效率取决于哈希算法的设计方法，如果存在冲突的情况下，时间复杂度可能会退化。极端情况下，哈希算法大量冲突，时间复杂度就退化为 O(n*m)。</p>
+<h1 id="BF-算法"><a href="#BF-算法" class="headerlink" title="BF 算法"></a>BF 算法</h1><p>BF （Brute Force）算法，中文叫作暴力匹配算法，也叫朴素匹配算法。这种算法的字符串匹配方式很“暴力”，比较简单、好懂，但相应的性能也不高。</p>
+<p><strong>主串</strong>和<strong>模式串</strong>的概念:比如在字符串 A 中查找字符串 B，那字符串 A 就是主串，字符串 B 就是模式串。</p>
+<p>设主串的长度为n，模式串的长度为m，因为在主串中查找模式串，所以 n&gt;m。</p>
+<p>BF 算法的思想就是，穷举主串中起始位置分别是 0、1、2…、n-m 且长度为 m 的 n-m+1 个子串，看有没有跟长度为m的模式串匹配的：</p>
+<p><img src="imgs/2/1570498286430.png" alt="1570498286430"></p>
+<p>BF 算法每次都比对 m 个字符，最坏情况下要比对 n-m+1 次，所以最坏情况时间复杂度是 O(n*m)。</p>
+<p>BF 算法虽然相对其他字符串匹配算法，时间复杂度高，但却是一个最常用的字符串匹配算法，因为大部分情况下，模式串和主串的长度都不会太长。另外BF算法思想简单，代码实现简单不容易出错，即使有 bug 也容易暴露和修复。</p>
+<p>在工程中，在满足性能要求的前提下，简单是首选。这也是<a href="https://zh.wikipedia.org/wiki/KISS原则" target="_blank" rel="noopener">KISS（Keep it Simple and Stupid）设计原则</a>。</p>
+<p>所以，绝大部分情况下，BF 朴素的字符串匹配算法就够用了。</p>
+<p>python实现代码：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">bf</span><span class="token punctuation">(</span>main<span class="token punctuation">,</span> pattern<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""bf暴搜
+    :param main: 主串
+    :param pattern: 模式串
+    :return:
+    """</span>
+    n <span class="token operator">=</span> len<span class="token punctuation">(</span>main<span class="token punctuation">)</span>
+    m <span class="token operator">=</span> len<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> n <span class="token operator">&lt;=</span> m<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token number">0</span> <span class="token keyword">if</span> pattern <span class="token operator">==</span> main <span class="token keyword">else</span> <span class="token operator">-</span><span class="token number">1</span>
+
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>n <span class="token operator">-</span> m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> main<span class="token punctuation">[</span>i <span class="token operator">+</span> j<span class="token punctuation">]</span> <span class="token operator">!=</span> pattern<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token keyword">break</span>
+            <span class="token keyword">if</span> j <span class="token operator">==</span> m <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">:</span> <span class="token keyword">return</span> i
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="RK-算法"><a href="#RK-算法" class="headerlink" title="RK 算法"></a>RK 算法</h1><p>RK(Rabin-Karp) 算法由它的两位发明者 Rabin 和 Karp 的名字来命名。它算是BF算法的升级版。</p>
+<p>RK 算法的思路：</p>
+<p>先通过哈希算法对主串中的 n-m+1 个子串分别求哈希值，然后逐个与模式串的哈希值比较大小。如果某个子串的哈希值与模式串相等，那就再对比一下子串和模式串本身。如果子串的哈希值与模式串的哈希值不相等，那对应的子串和模式串肯定也是不匹配的。</p>
+<p>因为哈希值是一个数字，数字之间比较是否相等是非常快速的，所以模式串和子串比较的效率就提高了。</p>
+<p><img src="imgs/2/1570498355108.png" alt="1570498355108"></p>
+<p>哈希算法的设计的非常有技巧，假设要处理的字符串只包含 K 个字符，可以用一个 K 进制数来表示一个子串，这个 K 进制数转化成十进制数，作为子串的哈希值。</p>
+<p>比如要处理的字符串只包含 a～z 这 26 个小写字母，那就用二十六进制来表示一个字符串，把 a～z 这 26 个字符映射到 0～25 这 26 个数字中：<br>$$<br>\begin{aligned}<br>‘cba’&amp;=’c’<em>26</em>26+’b’<em>26+’a’</em>1 \<br> &amp;=2<em>26</em>26+1<em>26+0</em>1 \<br> &amp;=1353<br>\end{aligned}<br>$$<br><img src="imgs/2/1570498417310.png" alt="1570498417310"></p>
+<p>相邻两个子串 s[i-1] 和 s[i]（i 表示子串在主串中的起始位置，子串的长度都为 m），对应的哈希值计算公式有交集，可以使用 s[i-1] 的哈希值计算出 s[i] 的哈希值：</p>
+<p><img src="imgs/2/1570498447098.png" alt="1570498447098"></p>
+<p>$26^{m-1}$ 这部分的计算可以通过查表的方法来提高效率，事先计算好 $26^0、26^1、26^2、\dots、26^{m-1}$，并且存储在一个长度为 m 的数组中，公式中的“次方”就对应数组的下标。当需要计算 26 的 x 次方的时候，就可以从数组的下标为 x 的位置取值，直接使用，省去了计算的时间。</p>
+<p><img src="imgs/2/1570498470428.png" alt="1570498470428"></p>
+<p>整个 RK 算法包含两部分，计算子串哈希值和模式串哈希值与子串哈希值之间的比较。</p>
+<p>计算子串哈希值可以通过设计特殊的哈希算法，只需要扫描一遍主串就能计算出所有子串的哈希值了，所以这部分的时间复杂度是 O(n)。</p>
+<p>模式串哈希值与每个子串哈希值之间的比较的时间复杂度是 O(1)，总共需要比较 n-m+1 个子串的哈希值，所以，这部分的时间复杂度也是 O(n)。</p>
+<p>RK 算法整体的时间复杂度就是 O(n)。</p>
+<p>如果模式串很长，上面的哈希算法计算得到的哈希值可能超过计算机中整型数据的表示范围，这时就必须允许哈希冲突。</p>
+<p>哈希算法的冲突概率要相对控制得低一些，如果存在大量冲突，就会导致 RK 算法的时间复杂度退化，效率下降。极端情况下，如果存在大量的冲突，每次都要再对比子串和模式串本身，那时间复杂度就会退化成 O(n*m)。</p>
+<p>可以将每一个字母从小到大对应一个素数，然后将这些素数求和作为哈希值，这样数据范围就会相对上面的方法小很多，哈希冲突的概率也比较小。</p>
+<p>简易python实现：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">simple_hash</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> start<span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    ret <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>start<span class="token punctuation">,</span> end <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        ret <span class="token operator">+=</span> ord<span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> ret
+
+
+<span class="token keyword">def</span> <span class="token function">rk</span><span class="token punctuation">(</span>main<span class="token punctuation">,</span> pattern<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""rk搜索算法
+    :param main: 主串
+    :param pattern: 模式串
+    :return:
+    """</span>
+    n <span class="token operator">=</span> len<span class="token punctuation">(</span>main<span class="token punctuation">)</span>
+    m <span class="token operator">=</span> len<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> n <span class="token operator">&lt;=</span> m<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token number">0</span> <span class="token keyword">if</span> pattern <span class="token operator">==</span> main <span class="token keyword">else</span> <span class="token operator">-</span><span class="token number">1</span>
+
+    <span class="token comment" spellcheck="true"># 子串哈希值表</span>
+    h <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token punctuation">(</span>n <span class="token operator">-</span> m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    h<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> simple_hash<span class="token punctuation">(</span>main<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> m <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n <span class="token operator">-</span> m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        h<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> h<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> ord<span class="token punctuation">(</span>main<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> ord<span class="token punctuation">(</span>main<span class="token punctuation">[</span>i <span class="token operator">+</span> m <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 模式串哈希值</span>
+    hash_p <span class="token operator">=</span> simple_hash<span class="token punctuation">(</span>pattern<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> m <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> h <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>h<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># 可能存在哈希冲突</span>
+        <span class="token keyword">if</span> h <span class="token operator">==</span> hash_p<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> pattern <span class="token operator">==</span> main<span class="token punctuation">[</span>i<span class="token punctuation">:</span>i <span class="token operator">+</span> m<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> i
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="二维字符串查找"><a href="#二维字符串查找" class="headerlink" title="二维字符串查找"></a>二维字符串查找</h1><p><strong>如何在一个二维字符串矩阵中查找另一个二维字符串矩阵（图中的模式串）呢？</strong></p>
+<p><img src="imgs/2/1570498502925.png" alt="1570498502925"></p>
+<p>假设二维主串和模式串的维度分别是 $m<em>n$ 和 $i</em>j$，横向在[0, m-i]，纵向在[0, n-j]取起始点，然后取同样大小的子串窗口对比，共有(m-i+1)*(n-j+1)个子串，再用BM或RK算法进行逐个比较即可。</p>
+<h1 id="BM-算法"><a href="#BM-算法" class="headerlink" title="BM 算法"></a>BM 算法</h1><h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><p>BM（Boyer-Moore）算法，是一种非常高效的字符串匹配算法，原理很复杂，有实验统计它的性能是著名的<a href="https://zh.wikipedia.org/wiki/克努斯-莫里斯-普拉特算法" target="_blank" rel="noopener">KMP 算法</a>的 3 到 4 倍。</p>
+<p>模式串和主串的匹配过程可以看作模式串在主串中不停地往后滑动。当遇到不匹配的字符时，</p>
+<p>BF 算法和 RK 算法的做法是模式串往后滑动一位，然后从模式串的第一个字符开始重新匹配：</p>
+<p><img src="imgs/2/1570498760377.png" alt="1570498760377"></p>
+<p>而BM算法则是根据规则，跳过一些肯定不会匹配的情况，一次性把模式串往后多滑动几位:</p>
+<p><img src="imgs/2/1570498774667.png" alt="1570498774667"></p>
+<p>BF和RK算法按模式串的下标从小到大的顺序，依次与主串中的字符进行匹配的。</p>
+<p>而 BM 算法是按照模式串下标从大到小的顺序，倒着匹配的：</p>
+<p><img src="imgs/2/1570498799523.png" alt="1570498799523"></p>
+<p>BM 算法包含<strong>坏字符规则</strong>（bad character rule）和<strong>好后缀规则</strong>（good suffix shift）。</p>
+<p>模式串的末尾最后一个字符如果无法匹配，这个没有匹配的字符叫作<strong>坏字符</strong>（主串中的字符），此时使用<strong>坏字符规则</strong>进行滑动。</p>
+<p>模式串的末尾最后一个字符可以匹配，末尾最大可匹配字符串称为好后缀，此时使用<strong>好后缀规则</strong>进行滑动。</p>
+<h2 id="1-坏字符规则"><a href="#1-坏字符规则" class="headerlink" title="1. 坏字符规则"></a>1. 坏字符规则</h2><p>如下图，发现模式串末尾字符d跟主串末尾字符c无法匹配，则主串末尾字符c是坏字符。</p>
+<p>拿坏字符 c 在模式串中查找，发现模式串中并不存在这个字符，这时可以将模式串直接往后滑动到坏字符c 后面的位置，继续匹配：</p>
+<p><img src="imgs/2/1570498845772.png" alt="1570498845772"></p>
+<p>这时坏字符 a 在模式串中是存在的，则将模式串滑动到让两个 a 上下对齐，如果坏字符在模式串出现多次，则将模式串最后出现的坏字符与主串中的坏字符对齐：</p>
+<p><img src="imgs/2/1570498875778.png" alt="1570498875778"></p>
+<p>假设模式串末尾角标si，坏字符最后一次在模式串出现的位置是xi（未出现记为-1）</p>
+<p>则模式串往后移动的位数等于 si-xi。</p>
+<p><img src="imgs/2/1570498905387.png" alt="1570498905387"></p>
+<p>BM 算法单纯使用坏字符规则，在最好情况下的时间复杂度是 O(n/m)。比如，主串是 aaabaaabaaabaaab，模式串是 aaaa。每次比对，模式串都可以直接后移四位。</p>
+<h2 id="2-好后缀规则"><a href="#2-好后缀规则" class="headerlink" title="2. 好后缀规则"></a>2. 好后缀规则</h2><p>如果模式串和主串末尾的字符可以匹配，则最大可匹配字符bc是好后缀：</p>
+<p><img src="imgs/2/1570498935264.png" alt="1570498935264"></p>
+<p>将好后缀bc记作{u}。如果在模式串中可以找到其他匹配{u}的子串，将最后一个匹配的子串记为{u*}。</p>
+<p>将模式串滑动到{u*}与主串的{u}对齐的位置：</p>
+<p><img src="imgs/2/1570498956983.png" alt="1570498956983"></p>
+<p>如果在模式串中找不到另一个可以匹配{u}的子串，此时还需要根据主串{u}的后缀子串和模式串的前缀子串是否匹配分两种情况。比如 abc 的后缀子串有c和bc，前缀子串有 a和ab。</p>
+<p>如果主串{u}的后缀子串和模式串的前缀子串能够匹配，则将最长的能够匹配的部分记为{v}。然后可以将模式串滑动到如下图所示的位置：</p>
+<p><img src="imgs/2/1570499030429.png" alt="1570499030429"></p>
+<p>1.模式串的任何前缀子串也无法与{u}的任何后缀子串匹配，则可以将模式串滑动到{u}后面的位置：</p>
+<p><img src="imgs/2/1570498975996.png" alt="1570498975996"></p>
+<p>2.模式串的前缀子串{v}与{u}的后缀子串匹配，则可以将模式串滑动到模式串的前缀子串与主串{u}的后缀子串对齐的位置：</p>
+<p><img src="imgs/2/1570498996673.png" alt="1570498996673"></p>
+<h2 id="BM-算法代码实现"><a href="#BM-算法代码实现" class="headerlink" title="BM 算法代码实现"></a>BM 算法代码实现</h2><p>为了快速查找坏字符在模式串中出现的位置，可以将每个坏字符对应的角标位置存储在散列表中，键为字符，值为坏字符在模式串最后一次出现的位置。</p>
+<p>假设字符串的字符集是 ASCII 码值，可以用大小为 256 的数组实现散列表，用数组的下标来代表字符的ASCII 码值，具体存储坏字符在模式串中最后一次出现的位置。如果字符串的字符集范围非常大，就使用常规方法实现散列表。</p>
+<p><img src="imgs/2/1570499071780.png" alt="1570499071780"></p>
+<p>python实现：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">generate_bc</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""生成坏字符位置表"""</span>
+    bc <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">256</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> c <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        bc<span class="token punctuation">[</span>ord<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> i
+    <span class="token keyword">return</span> bc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>下面先用python实现坏字符规则：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">bm</span><span class="token punctuation">(</span>main<span class="token punctuation">:</span> str<span class="token punctuation">,</span> pattern<span class="token punctuation">:</span> str<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+    n<span class="token punctuation">,</span> m <span class="token operator">=</span> len<span class="token punctuation">(</span>main<span class="token punctuation">)</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> n <span class="token operator">&lt;=</span> m<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token number">0</span> <span class="token keyword">if</span> main <span class="token operator">==</span> pattern <span class="token keyword">else</span> <span class="token operator">-</span><span class="token number">1</span>
+
+    <span class="token comment" spellcheck="true"># bc为坏字符位置表</span>
+    bc <span class="token operator">=</span> generate_bc<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+
+    i <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment" spellcheck="true"># i表示在主串中的角标</span>
+    <span class="token keyword">while</span> i <span class="token operator">&lt;=</span> n <span class="token operator">-</span> m<span class="token punctuation">:</span>
+        j <span class="token operator">=</span> m <span class="token operator">-</span> <span class="token number">1</span>  <span class="token comment" spellcheck="true"># j表示在模式串中的角标</span>
+        <span class="token keyword">while</span> j <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">and</span> main<span class="token punctuation">[</span>i <span class="token operator">+</span> j<span class="token punctuation">]</span> <span class="token operator">==</span> pattern<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            j <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token comment" spellcheck="true"># j此时表示坏字符首次出现的位置</span>
+        <span class="token keyword">if</span> j <span class="token operator">==</span> m <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># 坏字符出现在模式串尾部，使用坏字符规则</span>
+            i <span class="token operator">+=</span> j <span class="token operator">-</span> bc<span class="token punctuation">[</span>ord<span class="token punctuation">(</span>main<span class="token punctuation">[</span>i <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">elif</span> j <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">#已经匹配成功</span>
+            <span class="token keyword">return</span> i
+        <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># 尾部是好后缀，使用好后缀规则</span>
+            <span class="token keyword">pass</span>
+
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>为了快速查找跟好后缀{u}最后一个相匹配的后缀子串{u*}，将后缀子串的长度和相匹配的{u*}位置保存起来。</p>
+<p>用suffix 数组来保存，下标表示后缀子串的长度，值存储在模式串中跟好后缀{u}最后一个相匹配的子串{u*}的起始下标值。</p>
+<p>另外用boolean类型的prefix 数组存储该长度的后缀是否与前缀匹配。</p>
+<p><img src="imgs/2/1570499164110.png" alt="1570499164110"></p>
+<p>计算过程：拿下标从 0 到 i 的子串（i 可以是 0 到 m-2）与整个模式串，求公共后缀子串。</p>
+<p>如果公共后缀子串的长度是 k，就记录 suffix[k]=j（j 表示公共后缀子串的起始下标）。如果 j 等于 0，公共后缀子串也是模式串的前缀子串，就记录 prefix[k]=true。</p>
+<p><img src="imgs/2/1570499179335.png" alt="1570499179335"></p>
+<p>python实现代码：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">generate_gs</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">,</span> List<span class="token punctuation">[</span>bool<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    m <span class="token operator">=</span> len<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+    suffix <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> m
+    prefix <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">]</span> <span class="token operator">*</span> m
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>m <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        k <span class="token operator">=</span> <span class="token number">1</span>  <span class="token comment" spellcheck="true"># pattern[:i+1]和pattern的公共后缀长度</span>
+        j <span class="token operator">=</span> i
+        <span class="token keyword">while</span> j <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">and</span> pattern<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> pattern<span class="token punctuation">[</span>m <span class="token operator">-</span> k<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            suffix<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> j
+            k <span class="token operator">+=</span> <span class="token number">1</span>
+            j <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> j <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span> prefix<span class="token punctuation">[</span>k <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span>
+    <span class="token keyword">return</span> suffix<span class="token punctuation">,</span> prefix<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>假设好后缀的长度是 k。</p>
+<p>如果 suffix[k] 不等于 -1，就将模式串往后滑动 j-suffix[k]+1 位（j 表示坏字符对应的模式串中的字符下标）。</p>
+<p><img src="imgs/2/1570499211481.png" alt="1570499211481"></p>
+<p>如果 suffix[k] 等于 -1，并且在prefix数组[k,1]的范围中查找到prefix[r]=true(第一个找到的)，此时将模式串滑动m-r位即可。未找到时r=0:</p>
+<p><img src="imgs/2/1570499239474.png" alt="1570499239474"></p>
+<p>BM算法的python完整版代码实现:</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> List
+
+
+<span class="token keyword">def</span> <span class="token function">bm</span><span class="token punctuation">(</span>main<span class="token punctuation">:</span> str<span class="token punctuation">,</span> pattern<span class="token punctuation">:</span> str<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+    n<span class="token punctuation">,</span> m <span class="token operator">=</span> len<span class="token punctuation">(</span>main<span class="token punctuation">)</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> n <span class="token operator">&lt;=</span> m<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token number">0</span> <span class="token keyword">if</span> main <span class="token operator">==</span> pattern <span class="token keyword">else</span> <span class="token operator">-</span><span class="token number">1</span>
+
+    <span class="token comment" spellcheck="true"># bc为坏字符位置表</span>
+    bc <span class="token operator">=</span> generate_bc<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># suffix为好后缀匹配的{u*}位置表,prefix为前缀匹配表</span>
+    suffix<span class="token punctuation">,</span> prefix <span class="token operator">=</span> generate_gs<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+
+    i <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment" spellcheck="true"># i表示在主串中的角标</span>
+    <span class="token keyword">while</span> i <span class="token operator">&lt;=</span> n <span class="token operator">-</span> m<span class="token punctuation">:</span>
+        j <span class="token operator">=</span> m <span class="token operator">-</span> <span class="token number">1</span>  <span class="token comment" spellcheck="true"># j表示在模式串中的角标</span>
+        <span class="token keyword">while</span> j <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">and</span> main<span class="token punctuation">[</span>i <span class="token operator">+</span> j<span class="token punctuation">]</span> <span class="token operator">==</span> pattern<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            j <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token comment" spellcheck="true"># j此时表示坏字符首次出现的位置</span>
+        <span class="token keyword">if</span> j <span class="token operator">==</span> m <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># 坏字符出现在模式串尾部，使用坏字符规则</span>
+            i <span class="token operator">+=</span> j <span class="token operator">-</span> bc<span class="token punctuation">[</span>ord<span class="token punctuation">(</span>main<span class="token punctuation">[</span>i <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">elif</span> j <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># 已经匹配成功</span>
+            <span class="token keyword">return</span> i
+        <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># 尾部是好后缀，使用好后缀规则</span>
+            k <span class="token operator">=</span> m <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> j  <span class="token comment" spellcheck="true"># 好后缀的长度</span>
+            <span class="token keyword">if</span> suffix<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># 整个好后缀在pattern剩余字符中仍有出现</span>
+                i <span class="token operator">+=</span> j <span class="token operator">-</span> suffix<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                r <span class="token operator">=</span> k
+                <span class="token keyword">while</span> r <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">and</span> <span class="token operator">not</span> prefix<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                    r <span class="token operator">-=</span> <span class="token number">1</span>
+                i <span class="token operator">+=</span> m <span class="token operator">-</span> r
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
+
+
+<span class="token keyword">def</span> <span class="token function">generate_bc</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""生成坏字符位置表"""</span>
+    bc <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">256</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> c <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        bc<span class="token punctuation">[</span>ord<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> i
+    <span class="token keyword">return</span> bc
+
+
+<span class="token keyword">def</span> <span class="token function">generate_gs</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">,</span> List<span class="token punctuation">[</span>bool<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    m <span class="token operator">=</span> len<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+    suffix <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> m
+    prefix <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">]</span> <span class="token operator">*</span> m
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>m <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        k <span class="token operator">=</span> <span class="token number">1</span>  <span class="token comment" spellcheck="true"># pattern[:i+1]和pattern的公共后缀长度</span>
+        j <span class="token operator">=</span> i
+        <span class="token keyword">while</span> j <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">and</span> pattern<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> pattern<span class="token punctuation">[</span>m <span class="token operator">-</span> k<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            suffix<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> j
+            k <span class="token operator">+=</span> <span class="token number">1</span>
+            j <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> j <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span> prefix<span class="token punctuation">[</span>k <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span>
+    <span class="token keyword">return</span> suffix<span class="token punctuation">,</span> prefix<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h1><p><strong>K</strong>nuth-<strong>M</strong>orris-<strong>P</strong>ratt 字符串查找算法，简称为 <strong>KMP算法</strong>，用于在一个主串S内查找一个模式串P的出现位置。</p>
+<p>这个算法由 Donald Knuth、Vaughan Pratt、James H. Morris 三人于 1977 年联合发表，故取这 3 人的姓氏命名此算法。</p>
+<p>KMP 算法的核心思想是在模式串和主串匹配的过程中，每当遇到坏字符后，对于已经比对过的好前缀，根据某种规律将模式串一次性滑动很多位。</p>
+<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>在模式串和主串匹配的过程中，把不能匹配的那个字符仍然叫作<strong>坏字符</strong>，把已经匹配的那段字符串叫作<strong>好前缀</strong>。</p>
+<p><img src="imgs/2/1570499479897.png" alt="1570499479897"></p>
+<p>在好前缀本身的所有后缀子串中，查找最长的可以跟好前缀的前缀子串匹配的。假设最长的可匹配的前缀子串是{v}，长度是 k。每次遇到坏字符的时候就把 j 更新为 k，i 不变，然后继续比较。相当于把模式串一次性往后滑动 j-k 位。</p>
+<p><img src="imgs/2/1570499526476.png" alt="1570499526476"></p>
+<p><strong>前缀</strong> 指除了最后一个字符以外，一个字符串的全部头部组合；<strong>后缀</strong> 指除了第一个字符以外，一个字符串的全部尾部组合。 </p>
+<p>为了表述起来方便，将好前缀的所有后缀子串中，最长的前缀子串匹配的后缀子串，叫作<strong>最长可匹配后缀子串</strong>；对应的前缀子串，叫作<strong>最长可匹配前缀子串</strong>。</p>
+<p><img src="imgs/2/1570499540559.png" alt="1570499540559"></p>
+<p>以模式串abaabcac为例，列出模式串 P 的所有子串：</p>
+<p>a<br>ab<br>aba<br>abaa<br>abaab<br>abaabc<br>abaabca<br>abaabcac</p>
+<p>求得模式串 P 的每一个子串对应的各个前缀后缀的公共元素的 <strong>最大长度表</strong> :</p>
+<p> <img src="imgs/1572778109574.png" alt="1572778109574"></p>
+<p>很多教材称next 数组叫<strong>失效函数</strong>（failure function），但每本教材对next函数定义的细节都有差别。</p>
+<p>根据<strong>最大长度表</strong> 去求 <strong>next 数组</strong>：<strong>next 数组相当于“最大长度值” 整体向右移动一位，然后初始值赋为-1</strong>。</p>
+<p> <img src="imgs/1572782164334.png" alt="1572782164334"></p>
+<p>操作流程：</p>
+<ul>
+<li>假设现在主串 M 匹配到 i 位置，模式串 P 匹配到 j 位置</li>
+<li>如果 j = -1，或者当前字符匹配成功（即 M[i] == P[j] ），都令 i++，j++，继续匹配下一个字符；</li>
+<li>如果 j != -1，且当前字符匹配失败（即 M[i] != P[j] ），则令 i 不变，j = next[j]。<br> 匹配失败时，模式串 P相对于主串 M 向右移动了 j - next [j] 位</li>
+<li>换言之，将模式串 P 失配位置的 next 数组的值对应的模式串 P 的索引位置移动到失配处</li>
+</ul>
+<p>假设 next 数组已经计算好了，KMP 算法的python实现代码：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">kmp</span><span class="token punctuation">(</span>main<span class="token punctuation">:</span> str<span class="token punctuation">,</span> pattern<span class="token punctuation">:</span> str<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""kmp字符串匹配"""</span>
+    n<span class="token punctuation">,</span> m <span class="token operator">=</span> len<span class="token punctuation">(</span>main<span class="token punctuation">)</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> m <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token number">0</span>
+    <span class="token keyword">if</span> n <span class="token operator">&lt;=</span> m<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token number">0</span> <span class="token keyword">if</span> main <span class="token operator">==</span> pattern <span class="token keyword">else</span> <span class="token operator">-</span><span class="token number">1</span>
+
+    <span class="token comment" spellcheck="true"># 求解next数组</span>
+    next <span class="token operator">=</span> get_next<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+
+    i<span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> i <span class="token operator">&lt;</span> n <span class="token operator">and</span> j <span class="token operator">&lt;</span> m<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> j <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">or</span> main<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> pattern<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            i <span class="token operator">+=</span> <span class="token number">1</span>
+            j <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># j!=-1 and main[i]!=pattern[j]</span>
+            j <span class="token operator">=</span> next<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+    <span class="token keyword">if</span> j <span class="token operator">==</span> m<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> i <span class="token operator">-</span> j
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="快速求出next-数组的方法"><a href="#快速求出next-数组的方法" class="headerlink" title="快速求出next 数组的方法"></a>快速求出next 数组的方法</h2><p>假设已经求得abaa这一列的<strong>最大公共前后缀</strong>的<strong>长度</strong>为1，在它后面添加一个与前缀匹配的字符即可使最大公共前后缀变长。</p>
+<p>即下一列添加的字符与当前列的<strong>最大公共前后缀</strong>的<strong>长度</strong>后面的字符一样，则<strong>最大公共前后缀长度</strong>的<strong>长度</strong>加1。</p>
+<p>但如果下一列添加的字符与当前列的<strong>最大公共前后缀</strong>的<strong>长度</strong>后面的字符不一样，则<strong>最大公共前后缀长度</strong>的<strong>长度</strong>置为0，重新开始判断：</p>
+<p> <img src="imgs/1572834037956.png" alt="1572834037956"></p>
+<p> python 语言描述为：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_maxL</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    m <span class="token operator">=</span> len<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+    maxL <span class="token operator">=</span> <span class="token number">0</span>
+    max_l_arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> m
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> m<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> pattern<span class="token punctuation">[</span>maxL<span class="token punctuation">]</span> <span class="token operator">!=</span> pattern<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            maxL <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">if</span> pattern<span class="token punctuation">[</span>maxL<span class="token punctuation">]</span> <span class="token operator">==</span> pattern<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            maxL <span class="token operator">+=</span> <span class="token number">1</span>
+        max_l_arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> maxL
+    <span class="token keyword">return</span> max_l_arr<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>再将max_l_arr数组整体右移一位，并将头部初始化为-1，将以上代码修改为：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_next_arr</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    m <span class="token operator">=</span> len<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+    maxL <span class="token operator">=</span> <span class="token number">0</span>
+    next <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> m
+    next<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> m <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> pattern<span class="token punctuation">[</span>maxL<span class="token punctuation">]</span> <span class="token operator">!=</span> pattern<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            maxL <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">if</span> pattern<span class="token punctuation">[</span>maxL<span class="token punctuation">]</span> <span class="token operator">==</span> pattern<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            maxL <span class="token operator">+=</span> <span class="token number">1</span>
+        next<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> maxL
+    <span class="token keyword">return</span> next<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>另一种求解思路是<strong>将求next数组的过程看成字符串匹配的过程</strong>：以模式字符串为主字符串，以模式字符串的前缀为目标字符串，一旦字符串匹配成功，那么当前的next值就是匹配成功的字符串的长度。</p>
+<p>从模式字符串的第一位(注意，不包括第0位)开始对自身进行匹配运算。 在任一位置，能匹配的最长长度就是当前位置的next值：</p>
+<p><img src="imgs/1572834957032.png" alt="1572834957032"></p>
+<p>python实现代码：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_next</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""next数组生成"""</span>
+    m <span class="token operator">=</span> len<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+    next <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> m
+    i<span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span>
+    <span class="token keyword">while</span> i <span class="token operator">&lt;</span> m <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> j <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">or</span> pattern<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> pattern<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            i <span class="token operator">+=</span> <span class="token number">1</span>
+            j <span class="token operator">+=</span> <span class="token number">1</span>
+            next<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> j
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            j <span class="token operator">=</span> next<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+    <span class="token keyword">return</span> next<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="KMP-算法复杂度分析"><a href="#KMP-算法复杂度分析" class="headerlink" title="KMP 算法复杂度分析"></a>KMP 算法复杂度分析</h2><p>KMP 算法只需要一个额外的 next 数组，数组的大小跟模式串相同。所以空间复杂度是 O(m)，m 表示模式串的长度。</p>
+<p>KMP 算法包含两部分，第一部分是构建 next 数组，第二部分是借助 next 数组进行匹配。</p>
+<p>构建 next 数组，仅一层循环，循环次数跟模式串长度m有关，所以构建 next 数组的时间复杂度是 O(m)。借助 next 数组进行匹配，while循环代码如下：</p>
+<pre class="line-numbers language-python"><code class="language-python">i<span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span>
+<span class="token keyword">while</span> i <span class="token operator">&lt;</span> n <span class="token operator">and</span> j <span class="token operator">&lt;</span> m<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> j <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">or</span> main<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> pattern<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        i <span class="token operator">+=</span> <span class="token number">1</span>
+        j <span class="token operator">+=</span> <span class="token number">1</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># j!=-1 and main[i]!=pattern[j]</span>
+        j <span class="token operator">=</span> next<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>i 从 0 循环增长到 n-1，j 的总增长量与 i一致也为n。j = next[j]让 j 的值减少，但总减少量不会超过总增长量n。所以 while 循环的循环次数小于2n，借助 next 数组进行匹配的时间复杂度是 O(n)。</p>
+<p>故综合两部分的时间复杂度，KMP 算法的时间复杂度是 O(m+n)。</p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《19.字符串匹配基础》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/post/19.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E5%9F%BA%E7%A1%80.html" property="cc:attributionName"
+               rel="cc:attributionURL">
+                小小明
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/post/20.Trie%E6%A0%91.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="20.Trie树">
+                        
+                        <span class="card-title">20.Trie树</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            “Trie 树”的介绍Trie 树也叫“字典树”，是一种专门处理字符串匹配的树形结构，用来解决在一组字符串集合中快速查找某个字符串的问题。
+Trie 树特有的优点，决定它特别适合做搜索引擎的搜索关键词提示功能：在搜索引擎的搜索框中，输入要搜
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            小小明
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/post/18.%E6%B7%B1%E5%BA%A6%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="18.深度和广度优先搜索">
+                        
+                        <span class="card-title">18.深度和广度优先搜索</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            BFS&amp;DFS“搜索”算法深度优先搜索算法和广度优先搜索算法都是基于“图”这种数据结构。
+图上的搜索算法就是，在图中找出从一个顶点出发，到另一个顶点的路径。图上的搜索算法有深度优先、广度优先搜索算法，和$A$、$IDA$ 等启发式搜
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            小小明
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&nbsp;&copy;<a href="https://github.com/xiao-xiaoming" target="_blank">小小明</a>&nbsp;基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>&nbsp;主题搭建
+            <br>
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">348k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="fa fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fa fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            <br>
+            <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+			|&nbsp;
+			<a href="http://gdcainfo.miitbeian.gov.cn/" target="_blank">粤ICP备19118978号</a>
+            <script>
+                var now = new Date();
+
+                function createtime() {
+                    var grt = new Date("10/25/2019 00:00:00");
+                    now.setTime(now.getTime() + 250);
+                    days = (now - grt) / 1000 / 60 / 60 / 24;
+                    dnum = Math.floor(days);
+                    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+                    hnum = Math.floor(hours);
+                    if (String(hnum).length == 1) {
+                        hnum = "0" + hnum;
+                    }
+                    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                    mnum = Math.floor(minutes);
+                    if (String(mnum).length == 1) {
+                        mnum = "0" + mnum;
+                    }
+                    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                    snum = Math.round(seconds);
+                    if (String(snum).length == 1) {
+                        snum = "0" + snum;
+                    }
+                    document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+                    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+                }
+                setInterval("createtime()", 250);
+            </script>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"superSample":2,"width":150,"height":360,"position":"right","hOffset":-20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

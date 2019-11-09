@@ -220,55 +220,9 @@
 </header>
 
 
-<style>
-    .carousel-control {
-        width: 45px;
-        height: 45px;
-        line-height: 55px;
-        border-radius: 45px;
-        background: transparent;
-        cursor: pointer;
-        z-index: 100;
-    }
-
-    #prev-cover {
-        position: absolute;
-        top: 48%;
-        left: 8px;
-    }
-
-    #next-cover {
-        position: absolute;
-        top: 48%;
-        right: 8px;;
-    }
-
-    #prev-cover i {
-        margin-right: 3px;
-    }
-
-    #next-cover i {
-        margin-left: 3px;
-    }
-
-    .carousel-control:hover {
-        background-color:rgba(0, 0, 0, .4);
-    }
-
-    .carousel-control i {
-        color: #fff;
-        font-size: 2.4rem;
-    }
-</style>
-
-
-
-<div class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
-    
-
-    <div class="carousel-item red white-text bg-cover about-cover">
-        <div class="container">
-            <div class="row">
+    <div class="bg-cover pd-header about-cover">
+    <div class="container">
+    <div class="row">
     <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
         <div class="brand">
             <div class="title center-align">
@@ -289,154 +243,12 @@
 // 每天切换 banner 图.  Switch banner image every day.
 $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
 </script>
-
-            <div class="cover-btns">
-                <a href="#indexCard" class="waves-effect waves-light btn">
-                    <i class="fa fa-angle-double-down"></i>开始阅读
-                </a>
-
-                
-                <a href="https://github.com/xiao-xiaoming" class="waves-effect waves-light btn" target="_blank">
-                    <i class="fa fa-github-alt"></i>Github
-                </a>
-                
-            </div>
-            <div class="cover-social-link">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-        </div>
     </div>
-
-    
 </div>
-
-<script>
-$(function () {
-    let coverSlider = $('.carousel');
-    coverSlider.carousel({
-        duration: Number('120'),
-        fullWidth: true,
-        indicators: 'true' === 'true'
-    });
-
-    let carouselIntervalId;
-    
-    // Loop to call the next cover article picture.
-    let autoCarousel = function() {
-        carouselIntervalId = setInterval(function () {
-            coverSlider.carousel('next');
-        }, 5000);
-    };
-    autoCarousel();
-    
-
-    let restartPlay = function () {
-        
-        clearInterval(carouselIntervalId);
-        autoCarousel();
-        
-    };
-
-    
-    // prev and next cover post.
-    $('#prev-cover').click(function () {
-        coverSlider.carousel('prev');
-        restartPlay();
-    });
-    $('#next-cover').click(function () {
-        coverSlider.carousel('next');
-        restartPlay();
-    });
-    
-});
-</script>
-
 
 
 <main class="content">
 
-    
-    <div id="indexCard" class="index-card">
-        <div class="container ">
-            <div class="card">
-                <div class="card-content">
-                    
-                        <div class="dream">
-    
-    <div class="title center-align">
-        <i class="fa fa-lightbulb-o"></i>&nbsp;&nbsp;我的梦想
-    </div>
-    
-    <div class="row">
-        <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text">
-            不是每个人都应该像我这样去建造一座水晶大教堂，但是每个人都应该拥有自己的梦想，设计自己的梦想，追求自己的梦想，实现自己的梦想。梦想是生命的灵魂，是心灵的灯塔，是引导人走向成功的信仰。有了崇高的梦想，只要矢志不渝地追求，梦想就会成为现实，奋斗就会变成壮举，生命就会创造奇迹。——罗伯·舒乐
-        </div>
-    </div>
-</div>
-                    
-
-                    
-                        
-
-<link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
-<div class="music-player">
-    
-    <div class="title center-align">
-        <i class="fa fa-music"></i>&nbsp;&nbsp;听听音乐
-    </div>
-    
-    <div class="row">
-        <div class="col l8 offset-l2 m10 offset-m1 s12">
-            <div id="aplayer" class="music"></div>
-        </div>
-    </div>
-</div>
-
-<script src="/libs/aplayer/APlayer.min.js"></script>
-<script>
-$(function () {
-    new APlayer({
-        container: document.getElementById('aplayer'),
-        fixed: 'true' === 'true',
-        autoplay: 'true' === 'true',
-        theme: '#42b983',
-        loop: 'all',
-        order: 'random',
-        preload: 'auto',
-        volume: Number('0.7'),
-        listFolded: 'true' === 'true',
-        listMaxHeight: '',
-        audio: JSON.parse('[{"name":"有点甜 (Live)","artist":"麦小兜","url":"audio/1.mp3","cover":"audio/1.jpg"},{"name":"坏女孩 (Live)","artist":"麦小兜","url":"audio/2.mp3","cover":"audio/2.jpg"},{"name":"像暗杀似的绕到背后突然拥抱你 (Live)","artist":"麦小兜","url":"audio/3.mp3","cover":"audio/2.jpg"},{"name":"追光者","artist":"岑宁儿","url":"audio/4.mp3","cover":"audio/4.jpg"},{"name":"9420","artist":"麦小兜","url":"audio/5.mp3","cover":"audio/2.jpg"},{"name":"OK歌","artist":"麦小兜&单色凌","url":"audio/6.mp3","cover":"audio/6.jpg"},{"name":"说爱你","artist":"蔡依林","url":"audio/7.mp3","cover":"audio/7.jpg"},{"name":"海绵宝宝","artist":"麦小兜","url":"audio/8.mp3","cover":"audio/8.jpg"},{"name":"小星星 (Live)","artist":"麦小兜","url":"audio/9.mp3","cover":"audio/1.jpg"},{"name":"说爱你","artist":"麦小兜","url":"audio/10.mp3","cover":"audio/2.jpg"},{"name":"9420","artist":"麦小兜","url":"audio/11.mp3","cover":"audio/2.jpg"},{"name":"123我爱你","artist":"新乐尘符","url":"audio/12.mp3","cover":"audio/12.jpg"},{"name":"下一秒","artist":"张碧晨","url":"audio/13.mp3","cover":"audio/13.jpg"}]')
-    });
-});
-</script>
-                    
-
-                    
-
-                    <div id="recommend-sections" class="recommend">
-                        
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     
 
     
@@ -447,21 +259,23 @@ $(function () {
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/post/24.%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95.html">
+                    <a href="/post/12.%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="24.回溯算法">
+                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="12.哈希算法">
                             
-                            <span class="card-title">24.回溯算法</span>
+                            <span class="card-title">12.哈希算法</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                回溯算法[TOC]
-深度优先搜索算法利用的是回溯算法思想，它还用在很多实际的软件开发场景中，比如正则表达式匹配、编译原理中的语法分析等。除此之外，很多经典的数学问题都可以用回溯算法解决，比如数独、八皇后、0-1 背包、图的着色、旅行商问题、
+                                哈希算法哈希算法是指将任意长度的二进制值串映射为固定长度的二进制值串，这个映射的规则就是哈希算法，而通过原始数据映射之后得到的二进制值串就是哈希值。
+要设计一个优秀的哈希算法需要满足的几点要求：
+
+从哈希值不能反向推导出原始数据（所以哈希算
                             
                         </div>
                         <div class="publish-info">
@@ -483,22 +297,20 @@ $(function () {
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/post/23.%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95.html">
+                    <a href="/post/11.%E6%95%A3%E5%88%97%E8%A1%A8.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="23.分治算法">
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="11.散列表">
                             
-                            <span class="card-title">23.分治算法</span>
+                            <span class="card-title">11.散列表</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                分治算法[TOC]
-分治算法用四个字概括就是“分而治之”，将原问题划分成 n 个规模较小而结构与原问题相似的子问题，递归地解决这些子问题，然后再合并其结果，就得到原问题的解。
-分治算法的典型的两种应用场景，一个是用来指导编码，降低问题求解的
+                                散列表散列表来源于数组，它借助散列函数对数组这种数据结构进行扩展，利用的是数组支持按照下标随机访问元素的特性。散列表两个核心问题是散列函数设计和散列冲突解决。散列冲突有两种常用的解决方法，开放寻址法和链表法。散列函数设计的好坏决定了散列冲突
                             
                         </div>
                         <div class="publish-info">
@@ -520,20 +332,21 @@ $(function () {
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/post/22.%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95.html">
+                    <a href="/post/10.%E8%B7%B3%E8%A1%A8.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="22.贪心算法">
+                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="10.跳表">
                             
-                            <span class="card-title">22.贪心算法</span>
+                            <span class="card-title">10.跳表</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                贪心算法：如何用贪心算法实现Huffman压缩编码？贪心算法（greedy algorithm），这种算法思想更多的是指导设计基础算法。贪心算法的经典应用有，霍夫曼编码（Huffman Coding）、Prim 和 Kruskal 最小生成
+                                跳表=链表+多级索引跳表使用空间换时间的设计思路，通过构建多级索引来提高查询的效率，实现了基于链表的“二分查找”。跳表是一种动态数据结构，支持快速的插入、删除、查找操作，时间复杂度都是 O(logn)。
+跳表的空间复杂度是 O(n)。跳表的
                             
                         </div>
                         <div class="publish-info">
@@ -555,21 +368,21 @@ $(function () {
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/post/21.AC%E8%87%AA%E5%8A%A8%E6%9C%BA.html">
+                    <a href="/post/09.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="21.AC自动机">
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="09.二分查找">
                             
-                            <span class="card-title">21.AC自动机</span>
+                            <span class="card-title">09.二分查找</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                AC自动机很多支持用户发表文本内容的网站，比如 BBS，大都会有敏感词过滤功能，用来过滤掉用户输入的一些淫秽、反动、谩骂等内容。
-实际上，这些功能最基本的原理就是字符串匹配算法，也就是通过维护一个敏感词的字典，当用户输入一段文字内容之后，通
+                                二分查找二分查找的思想二分查找（Binary Search）算法，也叫折半查找算法。
+二分查找针对的是一个有序的数据集合，查找思想有点类似分治思想。每次都通过跟区间的中间元素对比，将待查找的区间缩小为之前的一半，直到找到要查找的元素，或者区
                             
                         </div>
                         <div class="publish-info">
@@ -591,21 +404,38 @@ $(function () {
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/post/20.Trie%E6%A0%91.html">
+                    <a href="/post/07.%E6%8E%92%E5%BA%8F.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="20.Trie树">
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="07.排序">
                             
-                            <span class="card-title">20.Trie树</span>
+                            <span class="card-title">07.排序</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                “Trie 树”的介绍Trie 树也叫“字典树”，是一种专门处理字符串匹配的树形结构，用来解决在一组字符串集合中快速查找某个字符串的问题。
-Trie 树特有的优点，决定它特别适合做搜索引擎的搜索关键词提示功能：在搜索引擎的搜索框中，输入要搜
+                                排序算法最常用的排序算法：
+冒泡排序、插入排序、选择排序、归并排序、快速排序、计数排序、基数排序、桶排序。
+按照时间复杂度可分为三类：
+
+
+
+排序算法
+时间复杂度
+是否基于比较
+
+
+
+冒泡、插入、选择
+$O(n^2)$
+Y
+
+
+快排、归并
+
                             
                         </div>
                         <div class="publish-info">
@@ -627,21 +457,21 @@ Trie 树特有的优点，决定它特别适合做搜索引擎的搜索关键词
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/post/19.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E5%9F%BA%E7%A1%80.html">
+                    <a href="/post/06.%E9%80%92%E5%BD%92.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="19.字符串匹配基础">
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="06.递归">
                             
-                            <span class="card-title">19.字符串匹配基础</span>
+                            <span class="card-title">06.递归</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                字符串匹配基础字符串匹配算法编程语言提供的字符串查找函数，比如 Java 中的 indexOf()，Python 中的 find() 函数等，它们底层就是依赖接下来要讲的字符串匹配算法。
-单模式字符串匹配算法有简单的BF 算法和 RK 算法
+                                如何理解“递归”？递归是一种非常高效、简洁的编码技巧，不过递归代码也比较难写、难理解。编写递归代码的关键就是不要把自己绕进去，正确姿势是写出递推公式，找出终止条件，然后再翻译成递归代码。
+不过递归代码也比较难写、难理解。编写递归代码的关键就
                             
                         </div>
                         <div class="publish-info">
@@ -663,21 +493,21 @@ Trie 树特有的优点，决定它特别适合做搜索引擎的搜索关键词
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/post/18.%E6%B7%B1%E5%BA%A6%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2.html">
+                    <a href="/post/05.%E9%98%9F%E5%88%97.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="18.深度和广度优先搜索">
+                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="05.队列">
                             
-                            <span class="card-title">18.深度和广度优先搜索</span>
+                            <span class="card-title">05.队列</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                BFS&amp;DFS“搜索”算法深度优先搜索算法和广度优先搜索算法都是基于“图”这种数据结构。
-图上的搜索算法就是，在图中找出从一个顶点出发，到另一个顶点的路径。图上的搜索算法有深度优先、广度优先搜索算法，和$A$、$IDA$ 等启发式搜
+                                队列的结构可以把队列想象成排队买票，先来的先买，后来的人只能站末尾，不允许插队。
+队列最大的特点就是先进先出，主要的两个操作是入队和出队。跟栈一样，它既可以用数组来实现，也可以用链表来实现。用数组实现的叫顺序队列，用链表实现的叫链式队列。特
                             
                         </div>
                         <div class="publish-info">
@@ -699,23 +529,21 @@ Trie 树特有的优点，决定它特别适合做搜索引擎的搜索关键词
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/post/17.%E5%9B%BE%E7%9A%84%E8%A1%A8%E7%A4%BA.html">
+                    <a href="/post/02.%E6%95%B0%E7%BB%84.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="17.图的表示">
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="02.数组">
                             
-                            <span class="card-title">17.图的表示</span>
+                            <span class="card-title">02.数组</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                图图的概念图（Graph）和树比起来，是一种更加复杂的非线性表结构。
-顶点&amp;边树中的元素称为节点，图中的元素叫作顶点（vertex）。图一个顶点可以与任意其他顶点建立连接关系，这种建立的关系叫边（edge）。
-
-在微信中，可以把每个
+                                02.数组数组是一种最基础的数据结构，在大部分编程语言中，数组都是从 0 开始编号的。
+线性表与非线性表线性表（Linear List），就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向，包括数组，链表、队列、栈等。
                             
                         </div>
                         <div class="publish-info">
@@ -737,26 +565,22 @@ Trie 树特有的优点，决定它特别适合做搜索引擎的搜索关键词
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/post/16.%E5%A0%86.html">
+                    <a href="/post/01.%E5%85%A5%E9%97%A8%E7%AF%87.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="16.堆">
+                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="01.入门篇">
                             
-                            <span class="card-title">16.堆</span>
+                            <span class="card-title">01.入门篇</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                堆堆的概念堆是一种特殊的树:
-
-堆是一个完全二叉树；
-堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。
-
-堆必须是一个完全二叉树，除了最后一层，其他层的节点个数都是满的，最后一层的节点都靠左排列。
-堆中的每个节点的值必须
+                                01.入门篇数据结构&amp;算法的定义从广义上讲，数据结构就是指一组数据的存储结构。算法就是操作数据的一组方法。
+图书管理员为了方便查找，一般会将书籍分门别类进行“存储”。按照一定规律编号，就是书籍这种“数据”的存储结构。
+查找一本书有很
                             
                         </div>
                         <div class="publish-info">
@@ -778,26 +602,26 @@ Trie 树特有的优点，决定它特别适合做搜索引擎的搜索关键词
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/post/15.%E9%80%92%E5%BD%92%E6%A0%91.html">
+                    <a href="/post/%E5%8D%81%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="15.递归树">
+                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="十、计算机网络">
                             
-                            <span class="card-title">15.递归树</span>
+                            <span class="card-title">十、计算机网络</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                递归树与时间复杂度分析有些代码比较适合用递推公式来分析，比如归并排序的时间复杂度、快速排序的最好情况时间复杂度；有些比较适合采用递归树来分析，比如快速排序的平均时间复杂度。而有些可能两个都不怎么适合使用，比如二叉树的递归前中后序遍历。
-一般
+                                第 5.1 节 计算机网络概述网络的网络网络把主机连接起来，而互联网是把多种不同的网络连接起来，因此互联网是网络的网络。
+ISP互联网服务提供商 ISP 可以从互联网管理机构获得许多 IP 地址，同时拥有通信线路以及路由器等联网设备，个人或
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-09
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-06
                             </span>
                             <span class="publish-author">
                                 
@@ -814,25 +638,28 @@ Trie 树特有的优点，决定它特别适合做搜索引擎的搜索关键词
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/post/14.%E7%BA%A2%E9%BB%91%E6%A0%91.html">
+                    <a href="/post/%E4%B8%89%E3%80%81Java%20%E9%9B%86%E5%90%88.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="14.红黑树">
+                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="三、Java 集合">
                             
-                            <span class="card-title">14.红黑树</span>
+                            <span class="card-title">三、Java 集合</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                二叉查找树平衡二叉查找树二叉查找树是最常用的一种二叉树，它支持快速插入、删除、查找操作，各个操作的时间复杂度跟树的高度成正比，理想情况下，时间复杂度是 O(logn)。但二叉查找树在频繁的动态更新过程中，可能会出现树的高度远大于 $log_
+                                集合框架3.1 接口常见接口
+Map 接口和 Collection 接口是所有集合框架的父接口；
+Collection 接口的子接口包括：Set 接口、List 接口和Queue接口；
+Map 接口的实现类主要有：HashMap、TreeM
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-09
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-06
                             </span>
                             <span class="publish-author">
                                 
@@ -849,47 +676,30 @@ Trie 树特有的优点，决定它特别适合做搜索引擎的搜索关键词
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/post/13.%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E7%A1%80.html">
+                    <a href="/post/%E4%BA%8C%E3%80%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="13.二叉树基础">
+                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="二、设计模式">
                             
-                            <span class="card-title">13.二叉树基础</span>
+                            <span class="card-title">二、设计模式</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                二叉树基础树（Tree）树是一种非线性表结构，比线性表的数据结构要复杂得多：
-
-
-
-树的种类
-
-
-
-树，二叉树
-
-
-二叉查找树
-
-
-平衡二叉查找树、红黑树
-
-
-递归树
-
-
-“树”的特征：
-
-“树”这种数据结构里面每个元素叫作“节点”；用来连
+                                设计模式2.1 设计原则单一职责原则
+不要存在多于一个导致类变更的原因。
+总结：一个类只负责一项职责。里氏替换原则
+1.子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。
+2.子类中可以增加自己特有的方法。
+3.当子类的方法重载父类的
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-09
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-06
                             </span>
                             <span class="publish-author">
                                 
@@ -914,17 +724,18 @@ Trie 树特有的优点，决定它特别适合做搜索引擎的搜索关键词
     <div class="row">
         <div class="col s6 m4 l4">
             
-            <a class="left btn-floating btn-large disabled">
+            <a href="/"
+               class="left btn-floating btn-large waves-effect waves-light bg-color">
                 <i class="fa fa-angle-left"></i>
             </a>
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">1 / 3</div>
+            <div class="center-align b-text-gray">2 / 3</div>
         </div>
         <div class="col s6 m4 l4">
             
-            <a href="/page/2/"
+            <a href="/page/3/"
                class="right btn-floating btn-large waves-effect waves-light bg-color">
                 <i class="fa fa-angle-right"></i>
             </a>

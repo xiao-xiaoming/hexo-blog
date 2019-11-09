@@ -1,0 +1,1289 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="16.堆, 小小明博客测试">
+    <meta name="description" content="堆堆的概念堆是一种特殊的树:
+
+堆是一个完全二叉树；
+堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。
+
+堆必须是一个完全二叉树，除了最后一层，其他层的节点个数都是满的，最后一层的节点都靠左排列。
+堆中的每个节点的值必须">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>16.堆 | 小小明博客测试</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小明博客测试</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/" class="waves-effect waves-light">
+						
+						<i class="fa fa-home"></i>
+						
+						<span>首页</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/tags" class="waves-effect waves-light">
+						
+						<i class="fa fa-tags"></i>
+						
+						<span>标签</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/categories" class="waves-effect waves-light">
+						
+						<i class="fa fa-bookmark"></i>
+						
+						<span>分类</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/archives" class="waves-effect waves-light">
+						
+						<i class="fa fa-archive"></i>
+						
+						<span>归档</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/about" class="waves-effect waves-light">
+						
+						<i class="fa fa-user-circle-o"></i>
+						
+						<span>关于</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/friends" class="waves-effect waves-light">
+						
+						<i class="fa fa-address-book"></i>
+						
+						<span>友情链接</span>
+					</a>
+          
+        </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小明博客测试</div>
+        <div class="logo-desc">
+            
+            一个普通的博客测试网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-user-circle-o"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        16.堆
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-11-09
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        6.5k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        25 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><h1 id="堆的概念"><a href="#堆的概念" class="headerlink" title="堆的概念"></a>堆的概念</h1><p>堆是一种特殊的树:</p>
+<ul>
+<li>堆是一个完全二叉树；</li>
+<li>堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。</li>
+</ul>
+<p>堆必须是一个完全二叉树，除了最后一层，其他层的节点个数都是满的，最后一层的节点都靠左排列。</p>
+<p>堆中的每个节点的值必须大于等于（或者小于等于）其子树中每个节点的值。</p>
+<p>对于每个节点的值都大于等于子树中每个节点值的堆叫“大顶堆”。</p>
+<p>对于每个节点的值都小于等于子树中每个节点值的堆叫“小顶堆”。</p>
+<p>对于同一组数据可以构建多种不同形态的堆。</p>
+<p>堆是一种完全二叉树。它最大的特性是：每个节点的值都大于等于（或小于等于）其子树节点的值。因此，堆被分成了两类，大顶堆和小顶堆。</p>
+<p>下图中1、2是大顶堆，3是小顶堆，4不是堆。</p>
+<p><img src="imgs/2/1570493298643.png" alt="1570493298643"></p>
+<h2 id="存储一个堆"><a href="#存储一个堆" class="headerlink" title="存储一个堆"></a>存储一个堆</h2><p>完全二叉树比较适合用数组来存储。用数组来存储完全二叉树，不需要存储左右子节点的指针，单纯地通过数组的下标，就可以找到一个节点的左右子节点和父节点。</p>
+<p><img src="imgs/2/1570493443825.png" alt="1570493443825"></p>
+<p>上图中i=1存储根节点，下标为 $i$ 的节点的左子节点就是下标为 $i∗2$ 的节点，右子节点就是下标为 $i∗2+1$的节点，父节点就是下标为 $\frac{i}{2}$ 的节点。</p>
+<p>如果i=0存储根节点，下标为 $i$ 的节点的左子节点就是下标为 $i∗2+1$ 的节点，右子节点就是下标为 $i∗2+2$的节点，但父节点的下标为$\frac{i-1}{2}$</p>
+<h2 id="堆的基本操作"><a href="#堆的基本操作" class="headerlink" title="堆的基本操作"></a>堆的基本操作</h2><h3 id="1-插入一个元素"><a href="#1-插入一个元素" class="headerlink" title="1. 插入一个元素"></a>1. 插入一个元素</h3><p>往堆中插入一个元素后需要继续满足堆的两个特性。</p>
+<p>把新插入的元素直接放到堆的最后，之前的堆就不再符合堆的特性。就需要进行调整，让其重新满足堆的特性，这个过程叫作<strong>堆化</strong>（heapify）。</p>
+<p>堆化有从下往上和从上往下两种方法。</p>
+<p><img src="imgs/2/1570493581004.png" alt="1570493581004"></p>
+<p>堆化就是顺着节点所在的路径，向上或者向下进行对比，然后交换。从下往上堆化是让新插入的节点与父节点对比大小。如果不满足子节点小于等于父节点的大小关系，就互换两个节点。一直重复这个过程，直到比对到根节点。</p>
+<p><img src="imgs/2/1570493595417.png" alt="1570493595417"></p>
+<p>java实现代码：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Heap</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 数组，从下标 1 开始存储数据</span>
+  <span class="token keyword">private</span> <span class="token keyword">int</span> n<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 堆可以存储的最大数据个数</span>
+  <span class="token keyword">private</span> <span class="token keyword">int</span> count<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 堆中已经存储的数据个数</span>
+
+  <span class="token keyword">public</span> <span class="token function">Heap</span><span class="token punctuation">(</span><span class="token keyword">int</span> capacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>capacity <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    n <span class="token operator">=</span> capacity<span class="token punctuation">;</span>
+    count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">int</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">>=</span> n<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 堆满了</span>
+    <span class="token operator">++</span>count<span class="token punctuation">;</span>
+    a<span class="token punctuation">[</span>count<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i <span class="token operator">=</span> count<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>i<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> a<span class="token punctuation">[</span>i<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 自下往上堆化</span>
+      <span class="token function">swap</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> i<span class="token punctuation">,</span> i<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// swap() 函数作用：交换下标为 i 和 i/2 的两个元素</span>
+      i <span class="token operator">=</span> i<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>python代码：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Heap</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token punctuation">[</span>None<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true"># 从下标 1 开始存储数据</span>
+        self<span class="token punctuation">.</span>count <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment" spellcheck="true"># 堆中已经存储的数据个数</span>
+
+    <span class="token keyword">def</span> <span class="token function">insert</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>count <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>count <span class="token operator">==</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>a<span class="token punctuation">.</span>append<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>a<span class="token punctuation">[</span>self<span class="token punctuation">.</span>count<span class="token punctuation">]</span> <span class="token operator">=</span> data
+        i <span class="token operator">=</span> self<span class="token punctuation">.</span>count
+        <span class="token keyword">while</span> i <span class="token operator">>></span> <span class="token number">1</span> <span class="token operator">and</span> self<span class="token punctuation">.</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> self<span class="token punctuation">.</span>a<span class="token punctuation">[</span>i <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>a<span class="token punctuation">[</span>i <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>a<span class="token punctuation">[</span>i <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true"># 交换下标为 i 和 i/2 的两个元素</span>
+            i <span class="token operator">=</span> i <span class="token operator">>></span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-删除堆顶元素"><a href="#2-删除堆顶元素" class="headerlink" title="2. 删除堆顶元素"></a>2. 删除堆顶元素</h3><p>堆的任何节点的值都大于等于（或小于等于）子树节点的值，堆顶元素存储的就是堆中数据的最大值或者最小值。</p>
+<p>大顶堆的堆顶元素就是最大的元素，删除堆顶元素之后，就需要把第二大的元素放到堆顶，那第二大元素肯定会出现在左右子节点中。然后我们再迭代地删除第二大节点，以此类推，直到叶子节点被删除。</p>
+<p>但这样操作完成后的堆不再满足完全二叉树的特性：</p>
+<p><img src="imgs/2/1570493622909.png" alt="1570493622909"></p>
+<p>可以先把最后一个节点放到堆顶，然后从上往下的堆化。这种方法堆化之后的结果，肯定满足完全二叉树的特性：</p>
+<p><img src="imgs/2/1570493638378.png" alt="1570493638378"></p>
+<p>java代码：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">removeMax</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 堆中没有数据</span>
+  a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>count<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token operator">--</span>count<span class="token punctuation">;</span>
+  <span class="token function">heapify</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> count<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">heapify</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 自上往下堆化</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> maxPos <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>i<span class="token operator">*</span><span class="token number">2</span> <span class="token operator">&lt;=</span> n <span class="token operator">&amp;&amp;</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> a<span class="token punctuation">[</span>i<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> maxPos <span class="token operator">=</span> i<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>i<span class="token operator">*</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">1</span> <span class="token operator">&lt;=</span> n <span class="token operator">&amp;&amp;</span> a<span class="token punctuation">[</span>maxPos<span class="token punctuation">]</span> <span class="token operator">&lt;</span> a<span class="token punctuation">[</span>i<span class="token operator">*</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> maxPos <span class="token operator">=</span> i<span class="token operator">*</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>maxPos <span class="token operator">==</span> i<span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token function">swap</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> i<span class="token punctuation">,</span> maxPos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    i <span class="token operator">=</span> maxPos<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>python代码：</p>
+<pre class="line-numbers language-python"><code class="language-python">    <span class="token keyword">def</span> <span class="token function">remove_max</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span>
+        self<span class="token punctuation">.</span>a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>a<span class="token punctuation">[</span>self<span class="token punctuation">.</span>count<span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>count <span class="token operator">-=</span> <span class="token number">1</span>
+        heapify<span class="token punctuation">(</span>self<span class="token punctuation">.</span>a<span class="token punctuation">,</span> self<span class="token punctuation">.</span>count<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">heapify</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> list<span class="token punctuation">,</span> n<span class="token punctuation">:</span> int<span class="token punctuation">,</span> i<span class="token punctuation">:</span> int<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># 自上往下堆化</span>
+    max_pos <span class="token operator">=</span> i
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">&lt;=</span> n <span class="token operator">and</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> a<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            max_pos <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span>
+        <span class="token keyword">if</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;=</span> n <span class="token operator">and</span> a<span class="token punctuation">[</span>max_pos<span class="token punctuation">]</span> <span class="token operator">&lt;</span> a<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            max_pos <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> max_pos <span class="token operator">==</span> i<span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+        a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>max_pos<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>max_pos<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+        i <span class="token operator">=</span> max_pos<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>一个包含 $n$ 个节点的完全二叉树高度小于 $log_{2}n$，堆化的时间复杂度跟树的高度成正比等于 $O(log\ n)$。插入数据和删除堆顶元素的主要逻辑就是堆化，所以，往堆中插入一个元素和删除堆顶元素的时间复杂度都是 $O(log\ n)$。</p>
+<h1 id="基于堆实现堆排序"><a href="#基于堆实现堆排序" class="headerlink" title="基于堆实现堆排序"></a>基于堆实现堆排序</h1><p>借助于堆这种数据结构实现的排序算法，就叫作堆排序。这种排序方法的时间复杂度非常稳定，是 $O(nlog\  n)$，并且它还是原地排序算法。</p>
+<p>堆排序的过程可以大致分解成两个大的步骤，<strong>建堆</strong>和<strong>排序</strong>。</p>
+<h2 id="1-建堆"><a href="#1-建堆" class="headerlink" title="1. 建堆"></a>1. 建堆</h2><p>我们首先将数组原地建成一个堆。“原地”是指不借助另一个数组在原数组上操作。</p>
+<p>建堆的两种思路：</p>
+<p>1.假设起初堆中只包含一个数据，就是下标为 $1$ 的数据。然后调用插入操作，将下标从 $2$ 到 $n$ 的数据依次插入到堆中。整个过程都是从下到上的堆化。</p>
+<p>2.从后往前处理数组，找到第一个第一个非叶子节点，然后依次从上往下堆化：</p>
+<p><img src="imgs/2/1570493827984.png" alt="1570493827984"></p>
+<p>java代码：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">buildHeap</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> n<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token operator">--</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">heapify</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> n<span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">heapify</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> maxPos <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>i<span class="token operator">*</span><span class="token number">2</span> <span class="token operator">&lt;=</span> n <span class="token operator">&amp;&amp;</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> a<span class="token punctuation">[</span>i<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> maxPos <span class="token operator">=</span> i<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>i<span class="token operator">*</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">1</span> <span class="token operator">&lt;=</span> n <span class="token operator">&amp;&amp;</span> a<span class="token punctuation">[</span>maxPos<span class="token punctuation">]</span> <span class="token operator">&lt;</span> a<span class="token punctuation">[</span>i<span class="token operator">*</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> maxPos <span class="token operator">=</span> i<span class="token operator">*</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>maxPos <span class="token operator">==</span> i<span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token function">swap</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> i<span class="token punctuation">,</span> maxPos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    i <span class="token operator">=</span> maxPos<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上述代码中从下标 $\frac{n}{2}$ 开始到 $1$ 的数据进行堆化，下标是 $\frac{n}{2}+1$ 到 $n$ 的节点是叶子节点不需要堆化。</p>
+<p>对于完全二叉树来说，下标从$\frac{n}{2}+1$到 $n$ 的节点都是叶子节点。</p>
+<p>建堆操作的时间复杂度：</p>
+<p>叶子节点不需要堆化，所以需要堆化的节点从倒数第二层开始。每个节点堆化的过程中，需要比较和交换的节点个数，跟这个节点的高度 $k$ 成正比。将每个节点的高度求和，就可以得到建堆的时间复杂度。</p>
+<p><img src="imgs/2/1570494076865.png" alt="1570494076865"></p>
+<p>将每个非叶子节点的高度求和：<br>$$<br>S_{1}=1 <em> h+2^{1} </em>(h-1)+2^{2} <em>(h-2)+\cdots+2^{k} </em>(h-k)+\cdots+2^{h-1} <em> 1<br>$$<br>把公式左右都乘以 $2$就得到公式 $S2$。将 $S2$ 错位对齐并减去 $S1$，可以得到 $S$：<br>$$<br>\begin{aligned}<br>S_{1}&amp;=1</em>h+&amp;2^{1}<em>(h-1)+&amp;2^{2}</em>(h-2)+\cdots+2^{k}<em>(h-k)+\cdots+2^{h-1} </em> 1 \<br>S_{2}&amp;=    &amp;2^{1}<em>h+    &amp;2^{2}</em>(h-1)+\cdots+2^{k}<em>(h-k+1)+\cdots+2^{h-1} </em> 2+2^h*1<br>\end{aligned}<br>$$</p>
+<p>$$<br>\begin{aligned}<br>S&amp;=S_{2}-S_{1} \<br>&amp;=-h+2^{1}+2^{2}+2^{3}+\cdots+2^{k}+\cdots+2^{h-1}+2^{h} \\<br>&amp;=-h+\left(2^{h}-2\right)+2^{h}\<br>&amp;=2^{h+1}-h-2<br>\end{aligned}<br>$$</p>
+<p>因为 $h=log_2 n$，代入公式 $S$，就能得到 $S=O(n)$，所以，建堆的时间复杂度就是 $O(n)$。</p>
+<h2 id="2-排序"><a href="#2-排序" class="headerlink" title="2. 排序"></a>2. 排序</h2><p>建堆结束之后，数组中的数据已经是按照大顶堆的特性来组织的。数组中的第一个元素就是堆顶，也就是最大的元素。把它跟最后一个元素交换，那最大元素就放到了下标为 $n$ 的位置。</p>
+<p>当堆顶元素移除之后，把下标为 $n$的元素放到堆顶，然后再通过堆化的方法，将剩下的 $n−1$ 个元素重新构建成堆。堆化完成之后再取堆顶的元素，放到下标是 $n−1$ 的位置，一直重复这个过程，直到最后堆中只剩下标为 $1$ 的一个元素，排序工作就完成了。</p>
+<p><img src="imgs/2/1570494449408.png" alt="1570494449408"></p>
+<p>java代码：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// n 表示数据的个数，数组 a 中的数据从下标 1 到 n 的位置。</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">buildHeap</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> k <span class="token operator">=</span> n<span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>k <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">swap</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">--</span>k<span class="token punctuation">;</span>
+    <span class="token function">heapify</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> k<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>现在，我们再来分析一下堆排序的时间复杂度、空间复杂度以及稳定性。</p>
+<p>整个堆排序的过程，都只需要极个别临时存储空间，所以堆排序是原地排序算法。堆排序包括建堆和排序两个操作，建堆过程的时间复杂度是 $O(n)$，排序过程的时间复杂度是 $O(nlog \  n)$，所以，堆排序整体的时间复杂度是 $O(nlog \  n)$。</p>
+<p>堆排序不是稳定的排序算法，因为在排序的过程，存在将堆的最后一个节点跟堆顶节点互换的操作，所以就有可能改变值相同数据的原始相对顺序。</p>
+<p>上述实现中，堆中的数据是从数组下标为 1 的位置开始存储。</p>
+<p>如果从 $0$ 开始存储，计算子节点和父节点的下标的公式就改变了。此时对于下标为i的节点，左子节点的下标是 $2∗i+1$，右子节点的下标是 $2∗i+2$，父节点的下标就是 $\frac{i-1}{2}$。</p>
+<h2 id="为什么快速排序要比堆排序性能好？"><a href="#为什么快速排序要比堆排序性能好？" class="headerlink" title="为什么快速排序要比堆排序性能好？"></a>为什么快速排序要比堆排序性能好？</h2><p><strong>第一点，堆排序跳跃访问方式对CPU缓存不友好</strong></p>
+<p>对于快速排序来说，数据是顺序访问的。而对于堆排序来说，数据是跳着访问的。 比如，堆排序中，最重要的一个操作就是数据的堆化。比如下面这个例子，对堆顶节点进行堆化，会依次访问数组下标是 $1，2，4，8$的元素，而不是像快速排序那样，局部顺序访问，这样对 CPU 缓存是不友好的。</p>
+<p><img src="imgs/2/1570494627902.png" alt="1570494627902"></p>
+<p><strong>第二点，对于同样的数据，在排序过程中，堆排序算法的数据交换次数要多于快速排序。</strong></p>
+<p>快速排序数据交换的次数不会比逆序度多，但堆排序的第一步是建堆，建堆的过程会打乱数据原有的相对先后顺序，导致原数据的有序度降低。比如，对于一组已经有序的数据来说，经过建堆之后，数据反而变得更无序了。</p>
+<p><img src="imgs/2/1570494651114.png" alt="1570494651114"></p>
+<h1 id="堆的应用"><a href="#堆的应用" class="headerlink" title="堆的应用"></a>堆的应用</h1><p>堆这种数据结构的应用：优先级队列、求 Top K 和求中位数。</p>
+<h2 id="一：优先级队列"><a href="#一：优先级队列" class="headerlink" title="一：优先级队列"></a>一：优先级队列</h2><p>在优先级队列中，数据的出队顺序不是先进先出，而是按照优先级来，优先级最高的，最先出队。</p>
+<p>用堆来实现一个优先级队列是最直接、最高效的。因为，堆和优先级队列非常相似。一个堆就可以看作一个优先级队列。往优先级队列中插入一个元素，就相当于往堆中插入一个元素；从优先级队列中取出优先级最高的元素，就相当于取出堆顶元素。</p>
+<p>优先级队列的应用场景非常多，很多数据结构和算法都要依赖它。比如，赫夫曼编码、图的最短路径、最小生成树算法等等。很多语言都提供了优先级队列的实现，比如，Java 的 PriorityQueue，C++ 的 priority_queue 等。</p>
+<p>优先级队列具体用法：</p>
+<h3 id="1-合并有序小文件"><a href="#1-合并有序小文件" class="headerlink" title="1. 合并有序小文件"></a>1. 合并有序小文件</h3><p>假设有 100 个小文件，每个文件的大小是 100MB，每个文件中存储的都是有序的字符串。希望将这些 100 个小文件合并成一个有序的大文件。这里就会用到优先级队列。</p>
+<p>整体思路类似于归并排序中的合并函数。从这 100 个文件中，各取第一个字符串，放入数组中，然后比较大小，把最小的那个字符串放入合并后的大文件中，并从数组中删除。</p>
+<p>假设，这个最小的字符串来自于 13.txt 这个小文件，就再从这个小文件取下一个字符串，并且放到数组中，重新比较大小，并且选择最小的放入合并后的大文件，并且将它从数组中删除。依次类推，直到所有的文件中的数据都放入到大文件为止。</p>
+<p>每次都从大小为100的数组中取最小字符串，都需要循环遍历整个数组，不是很高效。这里就可以用到优先级队列，也可以说是堆。</p>
+<p>将从小文件中取出来的字符串放入到小顶堆中，那堆顶的元素就是最小的字符串，将这个字符串放入到大文件中，并将其从堆中删除。然后再从小文件中取出下一个字符串，放入到堆中。循环这个过程，就可以将 100 个小文件中的数据依次放入到大文件中。</p>
+<p>在<a href="07.排序.md#日志合并题">07.排序-日志合并题</a>中，我已经给出基本的顺序查找的实现，但现在本题从之前10个小文件增加到100个小文件，所以必须将数组改进为小根堆提高效率，下面是python实现：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> os
+
+
+<span class="token keyword">def</span> <span class="token function">sort_key</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> int<span class="token punctuation">(</span>x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">min_heapify</span><span class="token punctuation">(</span>heap_arr<span class="token punctuation">:</span> list<span class="token punctuation">,</span> n<span class="token punctuation">:</span> int<span class="token punctuation">,</span> i<span class="token punctuation">:</span> int<span class="token punctuation">,</span> sort_key<span class="token operator">=</span>sort_key<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># 自上往下堆化</span>
+    min_pos <span class="token operator">=</span> i
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">&lt;=</span> n <span class="token operator">and</span> sort_key<span class="token punctuation">(</span>heap_arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">></span> sort_key<span class="token punctuation">(</span>heap_arr<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            min_pos <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span>
+        <span class="token keyword">if</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;=</span> n <span class="token operator">and</span> sort_key<span class="token punctuation">(</span>heap_arr<span class="token punctuation">[</span>min_pos<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">></span> sort_key<span class="token punctuation">(</span>heap_arr<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            min_pos <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> min_pos <span class="token operator">==</span> i<span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+        heap_arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> heap_arr<span class="token punctuation">[</span>min_pos<span class="token punctuation">]</span> <span class="token operator">=</span> heap_arr<span class="token punctuation">[</span>min_pos<span class="token punctuation">]</span><span class="token punctuation">,</span> heap_arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+        i <span class="token operator">=</span> min_pos
+
+
+fs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+min_heap <span class="token operator">=</span> <span class="token punctuation">[</span>None<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true"># 堆从角标1开始存储数据</span>
+out <span class="token operator">=</span> open<span class="token punctuation">(</span><span class="token string">"out.log"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i<span class="token punctuation">,</span> filename <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span><span class="token string">"../logs"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    fo <span class="token operator">=</span> open<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token string">"../logs"</span><span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    fs<span class="token punctuation">.</span>append<span class="token punctuation">(</span>fo<span class="token punctuation">)</span>
+    min_heap<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>fo<span class="token punctuation">.</span>readline<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token keyword">while</span> j <span class="token operator">>></span> <span class="token number">1</span> <span class="token operator">and</span> sort_key<span class="token punctuation">(</span>min_heap<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> sort_key<span class="token punctuation">(</span>min_heap<span class="token punctuation">[</span>j <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        min_heap<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> min_heap<span class="token punctuation">[</span>j <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> min_heap<span class="token punctuation">[</span>j <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> min_heap<span class="token punctuation">[</span>j<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true"># 交换下标为 j 和 j/2 的两个元素</span>
+        j <span class="token operator">=</span> j <span class="token operator">>></span> <span class="token number">1</span>
+count <span class="token operator">=</span> len<span class="token punctuation">(</span>fs<span class="token punctuation">)</span>
+
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    data<span class="token punctuation">,</span> i <span class="token operator">=</span> min_heap<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    out<span class="token punctuation">.</span>write<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+    out<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span>
+    line <span class="token operator">=</span> fs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>readline<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> line<span class="token punctuation">:</span>
+        min_heap<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> line
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        min_heap<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> min_heap<span class="token punctuation">[</span>count<span class="token punctuation">]</span>
+        count <span class="token operator">-=</span> <span class="token number">1</span>
+        fs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token keyword">break</span>
+    <span class="token comment" spellcheck="true"># 自上往下堆化</span>
+    min_heapify<span class="token punctuation">(</span>min_heap<span class="token punctuation">,</span> count<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> sort_key<span class="token punctuation">)</span>
+
+out<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-高性能定时器"><a href="#2-高性能定时器" class="headerlink" title="2. 高性能定时器"></a>2. 高性能定时器</h3><p>有一个定时器中维护了很多定时任务，每个任务都设定了一个要触发执行的时间点。</p>
+<table>
+<thead>
+<tr>
+<th>2018.11.28.  17:30</th>
+<th>Task A</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2018.11.28.  19:20</td>
+<td>Task B</td>
+</tr>
+<tr>
+<td>2018.11.28.  15:31</td>
+<td>Task C</td>
+</tr>
+<tr>
+<td>2018.11.28.  13:55</td>
+<td>Task D</td>
+</tr>
+</tbody></table>
+<p>按照任务设定的执行时间，将这些任务存储在优先级队列中，队列首部（也就是小顶堆的堆顶）存储的是最先执行的任务。</p>
+<p>这样，定时器就不需要不断的去扫描任务列表了。它拿队首任务的执行时间点，与当前时间点相减，得到一个时间间隔 T。这个时间间隔 T 就是，从当前时间开始，需要等待多久，才会有第一个任务需要被执行。</p>
+<p>这样，定时器就可以设定在 T 秒之后，再来执行任务。从当前时间点到（T-1）秒这段时间里，定时器都不需要做任何事情。</p>
+<p>当 T 秒时间过去之后，定时器取优先级队列中队首的任务执行。然后再计算新的队首任务的执行时间点与当前时间点的差值，把这个值作为定时器执行下一个任务需要等待的时间。</p>
+<p>这样，定时器既不用间隔 1 秒就轮询一次，也不用遍历整个任务列表，性能也就提高了。</p>
+<h2 id="二：利用堆求-Top-K"><a href="#二：利用堆求-Top-K" class="headerlink" title="二：利用堆求 Top K"></a>二：利用堆求 Top K</h2><p>维护一个 K 大小的小顶堆，将要求Top K的数据逐个取出与堆顶的元素对比，如果元素比堆顶元素大就把堆顶元素删除，并且将这个元素插入到堆中；如果比堆顶元素小，则不做处理。</p>
+<p>用以上方法可以快速对动态数据计算出实时 Top K。</p>
+<p>针对静态数据，只需要遍历静态数据逐个添加到小顶堆，静态数据都遍历完之后，堆中的数据就是前 K 大数据了。</p>
+<p>python代码：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">MinHeap</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> k<span class="token punctuation">:</span> int<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>heap_arr <span class="token operator">=</span> <span class="token punctuation">[</span>None<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token punctuation">(</span>k <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 从下标 1 开始存储数据</span>
+        self<span class="token punctuation">.</span>n <span class="token operator">=</span> k
+        self<span class="token punctuation">.</span>count <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment" spellcheck="true"># 堆中已经存储的数据个数</span>
+
+    <span class="token keyword">def</span> <span class="token function">insert</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>count <span class="token operator">==</span> self<span class="token punctuation">.</span>n<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> data <span class="token operator">></span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> data
+                self<span class="token punctuation">.</span>heapify_up_to_down<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span>
+        self<span class="token punctuation">.</span>count <span class="token operator">+=</span> <span class="token number">1</span>
+        self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>self<span class="token punctuation">.</span>count<span class="token punctuation">]</span> <span class="token operator">=</span> data
+        self<span class="token punctuation">.</span>heapify_down_to_top<span class="token punctuation">(</span>self<span class="token punctuation">.</span>count<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">heapify_down_to_top</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># 从下往上堆化</span>
+        <span class="token keyword">while</span> i <span class="token operator">>></span> <span class="token number">1</span> <span class="token operator">and</span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>i <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>i <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>i <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true"># 交换下标为 i 和 i/2 的两个元素</span>
+            i <span class="token operator">=</span> i <span class="token operator">>></span> <span class="token number">1</span>
+
+    <span class="token keyword">def</span> <span class="token function">heapify_up_to_down</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> i<span class="token punctuation">:</span> int<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># 自上往下堆化</span>
+        min_pos <span class="token operator">=</span> i
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">&lt;=</span> self<span class="token punctuation">.</span>n <span class="token operator">and</span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                min_pos <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span>
+            <span class="token keyword">if</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;=</span> self<span class="token punctuation">.</span>n <span class="token operator">and</span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>min_pos<span class="token punctuation">]</span> <span class="token operator">></span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                min_pos <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> min_pos <span class="token operator">==</span> i<span class="token punctuation">:</span>
+                <span class="token keyword">break</span>
+            self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>min_pos<span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>min_pos<span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+            i <span class="token operator">=</span> min_pos
+
+
+<span class="token keyword">def</span> <span class="token function">topK</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> list<span class="token punctuation">,</span> k<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> list<span class="token punctuation">:</span>
+    heap <span class="token operator">=</span> MinHeap<span class="token punctuation">(</span>k<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> e <span class="token keyword">in</span> a<span class="token punctuation">:</span>
+        heap<span class="token punctuation">.</span>insert<span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> heap<span class="token punctuation">.</span>heap_arr<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+
+
+a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>topK<span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="三：利用堆求中位数"><a href="#三：利用堆求中位数" class="headerlink" title="三：利用堆求中位数"></a>三：利用堆求中位数</h2><p>把数据从小到大排列：</p>
+<p>如果数据的个数是奇数，那第 $\frac{n}{2}+1$ 个数据是中位数；</p>
+<p>如果数据的个数是偶数，第 $\frac{n}{2}$ 个和第 $\frac{n}{2}+1$ 个数据是中位数，可以取两个数中靠前的那个，就是第 $\frac{n}{2}$ 个数据作为中位数。</p>
+<p><img src="imgs/2/1570496431493.png" alt="1570496431493"></p>
+<p>对于<strong>静态数据</strong>集合，中位数是固定的，先排序再直接返回这个固定的值就好了。</p>
+<p>对于<strong>动态数据</strong>集合，中位数在不停地变动，如果每次询问中位数的时候，都要先进行排序代价很高。</p>
+<p>借助堆这种数据结构，不用排序就可以快速求中位数：</p>
+<p>维护两个堆，一个大顶堆，一个小顶堆。大顶堆中存储前半部分数据，小顶堆中存储后半部分数据，且小顶堆中的数据都大于大顶堆中的数据。</p>
+<ul>
+<li>如果n 是偶数，大顶堆存储前$\frac{n}{2}$ 个数据，小顶堆中存储后 $\frac{n}{2}$ 个数据。</li>
+<li>如果 n 是奇数，大顶堆存储前$\frac{n}{2}+1$ 个数据，小顶堆中存储后 $\frac{n}{2}$ 个数据。</li>
+</ul>
+<p>其中大顶堆中的堆顶元素就是中位数：</p>
+<p><img src="imgs/2/1570496493417.png" alt="1570496493417"></p>
+<p>添加一个数据：</p>
+<ul>
+<li>如果新加入的数据小于等于大顶堆的堆顶元素，插入到大顶堆；</li>
+<li>如果新加入的数据大于等于小顶堆的堆顶元素，插入到小顶堆。</li>
+</ul>
+<p>这时候可能出现两个堆中的数据个数不符合前面约定的情况，可以从一个堆中不停地将堆顶元素移动到另一个堆，通过这样的调整，来让两个堆中的数据满足上面的约定。</p>
+<p><img src="imgs/2/1570496545408.png" alt="1570496545408"></p>
+<p>插入数据因为需要涉及堆化时间复杂度为 $O(logn)$，求中位数只需要返回大顶堆的堆顶元素就可以时间复杂度是 $O(1)$。</p>
+<p>利用两个堆求其他百分位的数据原理是类似的，中位数就是将数据从小到大排列，处于中间位置，就叫中位数，这个数据会大于等于前面 50% 的数据，99 百分位数就是大于前面 99% 数据的那个数据。</p>
+<p>假设有 100 个数据，分别是 1，2，3，……，100，那 99 百分位数就是 99，因为小于等于 99 的数占总个数的 99%。</p>
+<p><img src="imgs/2/1570496832646.png" alt="1570496832646"></p>
+<p>如果有 n 个数据，将数据从小到大排列之后，99 百分位数大约就是第 $n<em>99\%$ 个数据，同类，80 百分位数大约就是第 $n </em>80\%$ 个数据。</p>
+<p>求 99 百分位数的思路：</p>
+<p>维护两个堆，一个大顶堆，一个小顶堆。假设当前总数据的个数是 n，大顶堆中保存 $n<em>99\%$ 个数据，小顶堆中保存 $n</em>1\%$ 个数据。大顶堆堆顶的数据就是要找的 99 百分位数。</p>
+<p>每插入一个数据，要判断这个数据跟大顶堆和小顶堆堆顶数据的大小关系，然后决定插入到哪个堆中。如果这个新插入的数据比大顶堆的堆顶数据小，那就插入大顶堆；如果这个新插入的数据比小顶堆的堆顶数据大，那就插入小顶堆。插入数据之后要重新计算，大顶堆和小顶堆中的数据个数是否还符合 99:1 这个比例。如果不符合，就将一个堆中的数据移动到另一个堆，直到满足这个比例。</p>
+<p>每次插入数据会涉及几个数据的堆化操作，时间复杂度是 O(logn)。每次求 99 百分位数，直接返回大顶堆中的堆顶数据即可，时间复杂度是 O(1)。</p>
+<p>python实现代码：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> math
+
+<span class="token keyword">from</span> Heap <span class="token keyword">import</span> Heap
+
+
+<span class="token keyword">class</span> <span class="token class-name">PercentileNumber</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> percentile<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>min_heap <span class="token operator">=</span> Heap<span class="token punctuation">(</span>type<span class="token operator">=</span><span class="token string">"min"</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>max_heap <span class="token operator">=</span> Heap<span class="token punctuation">(</span>type<span class="token operator">=</span><span class="token string">"max"</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>count <span class="token operator">=</span> <span class="token number">0</span>
+        self<span class="token punctuation">.</span>percentile <span class="token operator">=</span> percentile
+
+    <span class="token keyword">def</span> <span class="token function">insert</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>count <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>count <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>max_heap<span class="token punctuation">.</span>insert<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+            <span class="token keyword">return</span>
+        max_count <span class="token operator">=</span> math<span class="token punctuation">.</span>ceil<span class="token punctuation">(</span>self<span class="token punctuation">.</span>count <span class="token operator">*</span> self<span class="token punctuation">.</span>percentile<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> data <span class="token operator">&lt;=</span> self<span class="token punctuation">.</span>max_heap<span class="token punctuation">.</span>get_top<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>max_heap<span class="token punctuation">.</span>insert<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>min_heap<span class="token punctuation">.</span>insert<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> max_count <span class="token operator">></span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>max_heap<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>max_heap<span class="token punctuation">.</span>insert<span class="token punctuation">(</span>self<span class="token punctuation">.</span>min_heap<span class="token punctuation">.</span>remove_top<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> max_count <span class="token operator">&lt;</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>max_heap<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>min_heap<span class="token punctuation">.</span>insert<span class="token punctuation">(</span>self<span class="token punctuation">.</span>max_heap<span class="token punctuation">.</span>remove_top<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">get_percentile_number</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>max_heap<span class="token punctuation">.</span>get_top<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+number <span class="token operator">=</span> PercentileNumber<span class="token punctuation">(</span>percentile<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">101</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    number<span class="token punctuation">.</span>insert<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>number<span class="token punctuation">.</span>get_percentile_number<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Heap类完整代码见github。</p>
+<h1 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h1><h2 id="1-获取Top-10搜索关键词"><a href="#1-获取Top-10搜索关键词" class="headerlink" title="1.获取Top 10搜索关键词"></a>1.获取Top 10搜索关键词</h2><p><strong>1.假设有一个包含 10 亿个搜索关键词的日志文件，如何快速获取到 Top 10 最热门的搜索关键词？</strong></p>
+<p>搜索引擎每天会接收大量的用户搜索请求，它会把这些用户输入的搜索关键词记录下来，然后再离线地统计分析，得到最热门的 Top 10 搜索关键词。处理的场景限定为单机，可以使用的内存为 1GB。如何解决这个问题？</p>
+<p>答：</p>
+<p>假设 10 亿条搜索关键词中不重复的有 1 亿条，如果每个搜索关键词的平均长度是 50 个字节，那存储 1 亿个关键词起码需要 5GB 的内存空间，那就先将 10 亿条搜索关键词通过哈希算法分片到 10 个文件中。</p>
+<p>遍历这 10 亿个关键词，通过某个哈希算法对其求哈希值，然后哈希值同 10 取模，得到的结果就是这个搜索关键词应该被分到的文件编号。</p>
+<p>针对每个包含 1 亿条搜索关键词的文件，利用散列表和堆，分别求出 Top 10，然后把这个 10 个 Top 10 放在一块，然后取这 100 个关键词中，出现次数最多的 10 个关键词，这就是这 10 亿数据中的 Top 10 最频繁的搜索关键词了。</p>
+<p>利用散列表和堆分别求出 Top 10的具体步骤：</p>
+<p>先顺序扫描当前文件的搜索关键词。当扫描到某个关键词时，去散列表中查询。如果存在，我们就将对应的次数加一；如果不存在，我们就将它插入到散列表，并记录次数为 1。遍历完之后，散列表中就存储了不重复的搜索关键词以及出现的次数。</p>
+<p>再建立一个大小为 10 的小顶堆，遍历散列表，依次取出每个搜索关键词及对应出现的次数，然后与堆顶的搜索关键词对比。如果出现次数比堆顶搜索关键词的次数多，那就删除堆顶的关键词，将这个出现次数更多的关键词加入到堆中。当遍历完整个散列表中的搜索关键词之后，堆中的搜索关键词就是出现次数最多的 Top 10 搜索关键词了。</p>
+<h2 id="2-定期统计点击量排名-Top-10-的新闻摘要"><a href="#2-定期统计点击量排名-Top-10-的新闻摘要" class="headerlink" title="2.定期统计点击量排名 Top 10 的新闻摘要"></a><strong>2.定期统计点击量排名 Top 10 的新闻摘要</strong></h2><p>有一个访问量非常大的新闻网站，我们希望将点击量排名 Top 10 的新闻摘要，滚动显示在网站首页 banner 上，并且每隔 1 小时更新一次。如果你是负责开发这个功能的工程师，你会如何来实现呢？</p>
+<p>答：</p>
+<p>以key为新闻id，value为点击量，建一个散列表，每当一个新闻被点击时，对应value+1，实时更新。</p>
+<p>每隔1小时，重新建立一个大小为10的小顶堆（初始点击量为0）。遍历散列表，依次取出新闻id和点击量count，将取出的点击量count与堆顶元素的点击量count对比。如果取出的点击量count相对堆顶元素更大就删除堆顶的元素，并将从散列表取出新闻id和对应点击量加入到堆中。当遍历完整个散列表之后，堆中的新闻id就是出现次数最多的 Top 10 新闻id了。小顶堆创建完成后，即可将小顶堆里的10个新闻id覆盖写入到数据库中。</p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《16.堆》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/post/16.%E5%A0%86.html" property="cc:attributionName"
+               rel="cc:attributionURL">
+                小小明
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/post/17.%E5%9B%BE%E7%9A%84%E8%A1%A8%E7%A4%BA.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="17.图的表示">
+                        
+                        <span class="card-title">17.图的表示</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            图图的概念图（Graph）和树比起来，是一种更加复杂的非线性表结构。
+顶点&amp;边树中的元素称为节点，图中的元素叫作顶点（vertex）。图一个顶点可以与任意其他顶点建立连接关系，这种建立的关系叫边（edge）。
+
+在微信中，可以把每个
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            小小明
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/post/15.%E9%80%92%E5%BD%92%E6%A0%91.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="15.递归树">
+                        
+                        <span class="card-title">15.递归树</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            递归树与时间复杂度分析有些代码比较适合用递推公式来分析，比如归并排序的时间复杂度、快速排序的最好情况时间复杂度；有些比较适合采用递归树来分析，比如快速排序的平均时间复杂度。而有些可能两个都不怎么适合使用，比如二叉树的递归前中后序遍历。
+一般
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            小小明
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&nbsp;&copy;<a href="https://github.com/xiao-xiaoming" target="_blank">小小明</a>&nbsp;基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>&nbsp;主题搭建
+            <br>
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">348k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="fa fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fa fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            <br>
+            <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+			|&nbsp;
+			<a href="http://gdcainfo.miitbeian.gov.cn/" target="_blank">粤ICP备19118978号</a>
+            <script>
+                var now = new Date();
+
+                function createtime() {
+                    var grt = new Date("10/25/2019 00:00:00");
+                    now.setTime(now.getTime() + 250);
+                    days = (now - grt) / 1000 / 60 / 60 / 24;
+                    dnum = Math.floor(days);
+                    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+                    hnum = Math.floor(hours);
+                    if (String(hnum).length == 1) {
+                        hnum = "0" + hnum;
+                    }
+                    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                    mnum = Math.floor(minutes);
+                    if (String(mnum).length == 1) {
+                        mnum = "0" + mnum;
+                    }
+                    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                    snum = Math.round(seconds);
+                    if (String(snum).length == 1) {
+                        snum = "0" + snum;
+                    }
+                    document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+                    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+                }
+                setInterval("createtime()", 250);
+            </script>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"superSample":2,"width":150,"height":360,"position":"right","hOffset":-20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

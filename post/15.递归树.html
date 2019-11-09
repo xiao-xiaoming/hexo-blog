@@ -1,0 +1,1000 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="15.递归树, 小小明博客测试">
+    <meta name="description" content="递归树与时间复杂度分析有些代码比较适合用递推公式来分析，比如归并排序的时间复杂度、快速排序的最好情况时间复杂度；有些比较适合采用递归树来分析，比如快速排序的平均时间复杂度。而有些可能两个都不怎么适合使用，比如二叉树的递归前中后序遍历。
+一般">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>15.递归树 | 小小明博客测试</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小明博客测试</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/" class="waves-effect waves-light">
+						
+						<i class="fa fa-home"></i>
+						
+						<span>首页</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/tags" class="waves-effect waves-light">
+						
+						<i class="fa fa-tags"></i>
+						
+						<span>标签</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/categories" class="waves-effect waves-light">
+						
+						<i class="fa fa-bookmark"></i>
+						
+						<span>分类</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/archives" class="waves-effect waves-light">
+						
+						<i class="fa fa-archive"></i>
+						
+						<span>归档</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/about" class="waves-effect waves-light">
+						
+						<i class="fa fa-user-circle-o"></i>
+						
+						<span>关于</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item" >
+		
+					  <a href="/friends" class="waves-effect waves-light">
+						
+						<i class="fa fa-address-book"></i>
+						
+						<span>友情链接</span>
+					</a>
+          
+        </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小明博客测试</div>
+        <div class="logo-desc">
+            
+            一个普通的博客测试网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-user-circle-o"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        15.递归树
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-11-09
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2.7k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        10 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="递归树与时间复杂度分析"><a href="#递归树与时间复杂度分析" class="headerlink" title="递归树与时间复杂度分析"></a>递归树与时间复杂度分析</h2><p>有些代码比较适合用递推公式来分析，比如归并排序的时间复杂度、快速排序的最好情况时间复杂度；有些比较适合采用递归树来分析，比如快速排序的平均时间复杂度。而有些可能两个都不怎么适合使用，比如二叉树的递归前中后序遍历。</p>
+<p>一般递推公式都可以求解递归代码的时间复杂度，但是有些情况，比如快排的平均时间复杂度的分析，用递推公式会涉及非常复杂的数学推导，借助递归树来分析递归算法的时间复杂度就会比较简单。</p>
+<p>递归的思想就是，将大问题分解为小问题来求解，然后再将小问题分解为小小问题。这样一层一层地分解，直到问题的数据规模被分解得足够小，不用继续递归分解为止。</p>
+<p>如果把这个一层一层的分解过程画成图，它其实就是一棵树，这棵树就叫<strong>递归树</strong>。</p>
+<p>下面是一棵斐波那契数列的递归树，节点里的数字表示数据的规模，一个节点的求解可以分解为左右子节点两个问题的求解。</p>
+<p><img src="imgs/2/1570445651316.png" alt="1570445651316"></p>
+<h2 id="递归树分析归并排序递归代码的时间复杂度"><a href="#递归树分析归并排序递归代码的时间复杂度" class="headerlink" title="递归树分析归并排序递归代码的时间复杂度"></a>递归树分析归并排序递归代码的时间复杂度</h2><p>归并排序每次会将数据规模一分为二，画成递归树，就是下面这个样子：</p>
+<p><img src="imgs/2/1570445665505.png" alt="1570445665505"></p>
+<p>因为每次分解都是一分为二，所以代价很低，我们把时间上的消耗记作常量 $1$。每一层归并操作消耗的时间总和是一样的，跟要排序的数据规模有关，我们把每一层归并操作消耗的时间记作 $n$。</p>
+<p>假设这棵树的高度 $h$，那总的时间复杂度为$O(n∗h)$。</p>
+<p>归并排序递归树是一棵满二叉树，满二叉树的高度大约是 $log_2n$，所以，归并排序递归实现的时间复杂度就是 $O(nlogn)$ 。</p>
+<h2 id="分析快速排序的时间复杂度"><a href="#分析快速排序的时间复杂度" class="headerlink" title="分析快速排序的时间复杂度"></a>分析快速排序的时间复杂度</h2><p>用递推公式来求解平均时间复杂度：</p>
+<p>快速排序在最好情况下，每次分区都能一分为二，这个时候用递推公式 $T(n)=2T(\frac{n}{2})+n$ ,很容易就能推导出时间复杂度是$ O(nlogn)$ 。</p>
+<p>假设平均情况下，每次分区之后两个分区的大小比例为 $1:k$。当 $k=9$时，如果用递推公式的方法来求解时间复杂度的话，递推公式就写成 $T(n)=T(\frac{n}{10})+T(\frac{9n}{10})+n$。</p>
+<p>用这个递推公式推导时间复杂度，推导过程非常复杂。现在用递归树来分析这种情况下快速排序的平均情况时间复杂度：</p>
+<p><img src="imgs/2/1570446242483.png" alt="1570446242483"></p>
+<p>快速排序的过程中，每次分区都要遍历待分区区间的所有数据，所以，每一层分区操作所遍历的数据的个数之和就是 $n$。假设递归树的高度 $h$，时间复杂度就是 $O(h∗n)$。</p>
+<p>每次分区并不是均匀地一分为二，递归树并不是满二叉树。快速排序结束的条件就是待排序的小区间，大小为 1，也就是说叶子节点里的数据规模是 1。</p>
+<p>从根节点 n 到叶子节点 1，递归树中最短的一个路径每次都乘以 $\frac{1}{10}$，最长的一个路径每次都乘以 $\frac{9}{10}$。通过计算可以得到，从根节点到叶子节点的最短路径是 $log_{10}n$，最长的路径是 $log_{\frac{10}{9}}n$。</p>
+<p><img src="imgs/2/1570446604211.png" alt="1570446604211"></p>
+<p>遍历数据的个数总和介于 $n\ log_{10}n$ 和$n \ log_{\frac{10}{9}}n$之间。根据复杂度的大 O 表示法，对数复杂度的底数不管是多少，可以统一写成 $log\ n$，所以，当分区大小比例是 $1:9$时，快速排序的时间复杂度仍然是$O(nlog\ n)$。</p>
+<p>如果 $k=99$，树的最短路径就是 $log_{100}n$，最长路径是 $log_{\frac{100}{99}}n$，所以总遍历数据个数介于 $nlog_{100}n$ 和 $nlog_{\frac{100}{99}}n$ 之间，时间复杂度也仍然是 $O(nlog\ n)$。</p>
+<p>只要 $k$ 的值不随 $n$变化，是一个事先确定的常量，那快排的时间复杂度就是$O(nlog\ n)$。所以，从概率论的角度来说，快排的平均时间复杂度就是 $O(nlog\ n)$。</p>
+<h2 id="分析斐波那契数列的时间复杂度"><a href="#分析斐波那契数列的时间复杂度" class="headerlink" title="分析斐波那契数列的时间复杂度"></a>分析斐波那契数列的时间复杂度</h2><p>斐波那契数列的递推实现代码实现代码：</p>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span>n<span class="token number">-1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">f</span><span class="token punctuation">(</span>n<span class="token number">-2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>把上面的递归代码画成递归树，就是下面这个样子：</p>
+<p><img src="imgs/2/1570448039211.png" alt="1570448039211"></p>
+<p>这棵递归树的高度是多少呢？</p>
+<p>$f(n)$分解为 $f(n−1)$ 和 $f(n−2)$，每次数据规模都是 $−1$ 或者 $−2$，叶子节点的数据规模是 $1$ 或者 $2$。所以，从根节点走到叶子节点，每条路径是长短不一的。如果每次都是 $−1$，那最长路径大约就是 $n$；如果每次都是 $−2$，那最短路径大约就是 $\frac{n}{2}$。</p>
+<p>每次分解之后的合并操作只需要一次加法运算，把这次加法运算的时间消耗记作 $1$。所以，从上往下，第一层的总时间消耗是 $1$，第二层的总时间消耗是 $2$，第三层的总时间消耗就是 $2^2$。依次类推，第 $k$ 层的时间消耗就是 $2^k−1$，那整个算法的总的时间消耗就是每一层时间消耗之和。</p>
+<p>如果路径长度都为 $n$，那这个总和就是 $2^n−1$。<br>$$<br>1+2+\cdots+2^{n-1}=2^{n}-1<br>$$<br>如果路径长度都是 $\frac{n}{2}$ ，那整个算法的总的时间消耗就是 $2^{\frac{n}{2}}−1$。<br>$$<br>1+2+\cdots+2^{\frac{n}{2}-1}=2^{\frac{n}{2}}-1<br>$$<br>所以，这个算法的时间复杂度就介于 $O(2^n)$ 和 $O(2^{\frac{n}{2}})$ 之间，算法的时间复杂度是指数级的。</p>
+<h2 id="分析全排列的时间复杂度"><a href="#分析全排列的时间复杂度" class="headerlink" title="分析全排列的时间复杂度"></a>分析全排列的时间复杂度</h2><p>“如何把n 个数据的所有排列都找出来”，这就是全排列的问题。</p>
+<p>比如$1，2，3 $这样 3 个数据，有下面这几种不同的排列：</p>
+<pre><code>1, 2, 3
+1, 3, 2
+2, 1, 3
+2, 3, 1
+3, 1, 2
+3, 2, 1</code></pre><p>全排列问题可以用递归来实现：</p>
+<p>如果确定了第一位数据，就变成了求解剩下 $n−1$ 个数据的排列问题。而第一位数据可以是 $n$ 个数据中的任意一个，因此它的取值就有 $n$ 种情况。所以，“$n$ 个数据的排列”问题，就可以分解成 $n$ 个“$n−1$ 个数据的排列”的子问题。</p>
+<p>递推公式：</p>
+<pre><code>假设数组中存储的是 1，2， 3...n。
+
+f(1,2,...n) = {第一位是 1, f(n-1)} + {第一位是 2, f(n-1)} +...+{第一位是 n, f(n-1)}。</code></pre><p>python实现代码：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">permutation</span><span class="token punctuation">(</span>chars<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    :param chars: 字符串序列
+    :param k: 未处理的字符串的起始位置
+    :return:
+    """</span>
+    <span class="token keyword">if</span> k <span class="token operator">==</span> len<span class="token punctuation">(</span>chars<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>chars<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>end<span class="token operator">=</span><span class="token string">","</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>k<span class="token punctuation">,</span> len<span class="token punctuation">(</span>chars<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> chars<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> chars<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">,</span> chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+        permutation<span class="token punctuation">(</span>chars<span class="token punctuation">,</span> k <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> chars<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> chars<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">,</span> chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>画出递归树：</p>
+<p><img src="imgs/2/1570448501976.png" alt="1570448501976"></p>
+<p>第一层分解有 $n$ 次交换操作，第二层有 $n$ 个节点，每个节点分解需要 $n−1$ 次交换，所以第二层总的交换次数是 $n∗(n−1)$。第三层有 $n∗(n−1)$ 个节点，每个节点分解需要 $n−2$ 次交换，所以第三层总的交换次数是 $n∗(n−1)∗(n−2)$。</p>
+<p>以此类推，第 kk 层总的交换次数就是 $n∗(n−1)∗(n−2)∗…∗(n−k+1)$。最后一层的交换次数就是 $n∗(n−1)∗(n−2)∗…∗2∗1$。每一层的交换次数之和就是总的交换次数。</p>
+<p>$$<br>n + n<em>(n-1) + n</em>(n-1)<em>(n-2) +… + n</em>(n-1)<em>(n-2)</em>…<em>2</em>1<br>$$<br>最后一个数$n∗(n−1)∗(n−2)∗…∗2∗1$ 等于 $n!$，而前面的 $n−1$ 个数都小于最后一个数，所以，总和肯定小于 $n∗n!$，全排列的递归算法的时间复杂度在 $O(n!)$到 $O(n∗n!)$之间，阶乘级。</p>
+<h2 id="分析细胞分裂问题的时间复杂度"><a href="#分析细胞分裂问题的时间复杂度" class="headerlink" title="分析细胞分裂问题的时间复杂度"></a>分析细胞分裂问题的时间复杂度</h2><p>1个细胞的生命周期是3小时，1小时分裂一次。求n小时后，容器内有多少细胞？时间复杂度是多少？</p>
+<p>细胞的生命周期是三个小时，一个小时后，第一个细胞分裂，此时细胞总数变成 2，这个时候其中一个细胞的生存时间变成了 1，另外一个刚分裂出来的是 0，下面简单表示一下分裂进程（-1 表示死亡）<br>时间 细胞状态 (生存时间) 细胞总数</p>
+<pre><code>1 0                                                   count=2
+2 0 1 0                                               count=4
+-1 0 1 0 2 0 1 0                                       count=7
+1 0 2 0 1 0 -1 0 1 0 2 0 1 0 1 0                       count=13
+-1 -1 2 2 2 2 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 count=24</code></pre><p>即：<br>f0 = 1；f1 = 2；f2 = 4<br>f3 = 7；f4 =13；f5 = 24</p>
+<p>第4个小时死亡的细胞是三小时前新出生的细胞$f(0)$，</p>
+<p>当n&gt;=4时，第n个小时死亡的细胞是$f(n-4)$，</p>
+<p>有递推式：<br>$$<br>f(n)=\begin{cases}<br>        1, &amp;  n&lt;=0 \<br>        2, &amp;  n=1 \<br>        4, &amp;  n=2 \<br>        7, &amp;  n=3 \<br>        2 * f(n - 1) - f(n - 4), &amp; n&gt;=4<br>     \end{cases}<br>$$</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">cell_division</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> n <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token number">1</span>
+    <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token number">2</span>
+    <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token number">4</span>
+    <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token number">7</span>
+    <span class="token keyword">return</span> <span class="token number">2</span> <span class="token operator">*</span> cell_division<span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span> cell_division<span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">4</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"f(%s)=%s"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>i<span class="token punctuation">,</span> cell_division<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>递归树:</p>
+<p><img src="imgs/oOAlvULKOjzy.png" alt="mark"></p>
+<p>$f(n)$分解为 $f(n−1)$ 和 $f(n−4)$，每次数据规模都是 ​−1​或者−4​，叶子节点的数据规模是 ​1、2、4或7。</p>
+<p>最长路径大约是n，最短路径大约是 n/4。</p>
+<p>每次分解之后的只需要一次乘法和一次加法运算，把这次运算的时间消耗记作 $1$。所以，从上往下，第一层的总时间消耗是 $1$，第二层的总时间消耗是 $2$，第三层的总时间消耗就是 $2^2$。依次类推，第 $k$ 层的时间消耗就是 $2^k−1$，那整个算法的总的时间消耗就是每一层时间消耗之和。</p>
+<p>如果路径长度都为 $n$，那这个总和就是 $2^n−1$。<br>$$<br>1+2+\cdots+2^{n-1}=2^{n}-1<br>$$<br>如果路径长度都是 $\frac{n}{4}$ ，那整个算法的总的时间消耗就是 $2^{\frac{n}{4}}−1$。<br>$$<br>1+2+\cdots+2^{\frac{n}{4}-1}=2^{\frac{n}{4}}-1<br>$$<br>所以，这个算法的时间复杂度就介于 $O(2^n)$ 和 $O(2^{\frac{n}{4}})$ 之间，算法的时间复杂度是指数级的。</p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《15.递归树》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/post/15.%E9%80%92%E5%BD%92%E6%A0%91.html" property="cc:attributionName"
+               rel="cc:attributionURL">
+                小小明
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/post/16.%E5%A0%86.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="16.堆">
+                        
+                        <span class="card-title">16.堆</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            堆堆的概念堆是一种特殊的树:
+
+堆是一个完全二叉树；
+堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。
+
+堆必须是一个完全二叉树，除了最后一层，其他层的节点个数都是满的，最后一层的节点都靠左排列。
+堆中的每个节点的值必须
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            小小明
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/post/14.%E7%BA%A2%E9%BB%91%E6%A0%91.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="14.红黑树">
+                        
+                        <span class="card-title">14.红黑树</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            二叉查找树平衡二叉查找树二叉查找树是最常用的一种二叉树，它支持快速插入、删除、查找操作，各个操作的时间复杂度跟树的高度成正比，理想情况下，时间复杂度是 O(logn)。但二叉查找树在频繁的动态更新过程中，可能会出现树的高度远大于 $log_
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            小小明
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&nbsp;&copy;<a href="https://github.com/xiao-xiaoming" target="_blank">小小明</a>&nbsp;基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>&nbsp;主题搭建
+            <br>
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">348k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="fa fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fa fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            <br>
+            <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+			|&nbsp;
+			<a href="http://gdcainfo.miitbeian.gov.cn/" target="_blank">粤ICP备19118978号</a>
+            <script>
+                var now = new Date();
+
+                function createtime() {
+                    var grt = new Date("10/25/2019 00:00:00");
+                    now.setTime(now.getTime() + 250);
+                    days = (now - grt) / 1000 / 60 / 60 / 24;
+                    dnum = Math.floor(days);
+                    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+                    hnum = Math.floor(hours);
+                    if (String(hnum).length == 1) {
+                        hnum = "0" + hnum;
+                    }
+                    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                    mnum = Math.floor(minutes);
+                    if (String(mnum).length == 1) {
+                        mnum = "0" + mnum;
+                    }
+                    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                    snum = Math.round(seconds);
+                    if (String(snum).length == 1) {
+                        snum = "0" + snum;
+                    }
+                    document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+                    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+                }
+                setInterval("createtime()", 250);
+            </script>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"superSample":2,"width":150,"height":360,"position":"right","hOffset":-20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
